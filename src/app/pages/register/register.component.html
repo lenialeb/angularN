@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="bg"></div>
+    <form>
+        <h2 class="heading">Register Here</h2>
+        <label for="username">Name: </label>
+        <input type="text" name="name" required [(ngModel)]="userObj.name">
+        <label for="username">Username: </label>
+        <input type="text" name="username" required [(ngModel)]="userObj.username">
+
+        <label for="password">Password: </label>
+        <input type="password" name="Password" required [(ngModel)]="userObj.password">
+
+        <button class="login-btn" type="button" (click)="register()">Register</button>
+
+        <span class="register-btn" [routerLink]="['/login']">Already have an account?</span>
+    </form>
+</div>

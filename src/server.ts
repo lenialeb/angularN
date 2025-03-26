@@ -5,6 +5,7 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import cors from 'cors'; // Import CORS
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,17 +15,15 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+// Enable CORS for your API
+app.use(cors({
+  origin: '*', // Use specific origin in production
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+// Handle preflight requests
+app.options('*', cors());
 
 /**
  * Serve static files from /browser

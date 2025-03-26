@@ -1,0 +1,93 @@
+<div class="mb-36">
+    <form class="needs-validation " novalidate>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom01">First name</label>
+            <input type="text" class="form-control" #fName="ngModel" minlength="8" name="firstName"  placeholder="First name" [(ngModel)]="userObj.firstName" required>
+           <div>
+            @if(fName.errors?.['required'] && fName.touched && fName.dirty ){
+                <span class="text-red-500">this is required</span>
+                
+            }
+            @else if (fName.errors?.['minlength']) {
+                <span class="text-red-500">min length required</span>
+
+            }
+        </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Last name</label>
+            <input type="text" class="form-control" #lname="ngModel" name="lastName" id="validationCustom02" placeholder="Last name" [(ngModel)]="userObj.lastName" required>
+         <div>
+            @if(lname.errors?.['required'] && lname.touched && lname.dirty ){
+                <span class="text-red-500">this is required</span>
+                
+            }
+         </div>
+           
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+              </div>
+              <input type="text" #userName="ngModel" class="form-control" name="userName" [(ngModel)]="userObj.userName"  placeholder="Username" aria-describedby="inputGroupPrepend" required>
+              <div>
+                @if(userName.errors?.['required'] && userName.touched && userName.dirty ){
+                    <span class="text-red-500">this is required</span>
+                    
+                }
+             </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom03">City</label>
+            <input type="text" class="form-control" #city="ngModel" name="city" [(ngModel)]="userObj.city"  id="validationCustom03" placeholder="City" required>
+            <div>
+                @if(city.errors?.['required'] && city.touched && city.dirty ){
+                    <span class="text-red-500">this is required</span>
+                    
+                }
+             </div>
+        </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">State</label>
+            <input type="text" class="form-control" #state="ngModel" name="state" [(ngModel)]="userObj.state"  id="validationCustom04" placeholder="State" required>
+            <div>
+                @if(state.errors?.['required'] && state.touched && state.dirty ){
+                    <span class="text-red-500">this is required</span>
+                    
+                }
+             </div>
+        </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom05">Zip</label>
+            <input type="text" class="form-control" #zip="ngModel" name="zipCode" [(ngModel)]="userObj.zipCode"  id="validationCustom05" placeholder="Zip" required>
+            <div>
+                @if(zip.errors?.['required'] && zip.touched && zip.dirty ){
+                    <span class="text-red-500">this is required</span>
+                    
+                }
+             </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" #isterm="ngModel" type="checkbox" name="isTerm" [(ngModel)]="userObj.isTerm"  id="invalidCheck" required>
+            <label class="form-check-label" >
+              Agree to terms and conditions
+            </label>
+            <div>
+                @if(isterm.errors?.['required'] && isterm.touched && isterm.dirty ){
+                    <span class="text-red-500">this is required</span>
+                    
+                }
+             </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" (click)="onSubmit()" type="submit">Submit form</button>
+      </form>
+</div>
