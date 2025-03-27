@@ -1,0 +1,45 @@
+<div class="max-w-md mx-auto p-6 bg-white mt-20 rounded-lg shadow-md">
+    <h2 class="text-xl text-center font-semibold mb-4">Add User</h2>
+    <form>
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 font-medium mb-2">Name:</label>
+        <input 
+          class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+          type="text" 
+          id="name" 
+          [(ngModel)]="user.name" 
+          name="name" 
+          required 
+        />
+      </div>
+      <div class="mb-4">
+        <label for="username" class="block text-gray-700 font-medium mb-2">User Name:</label>
+        <input 
+          class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+          type="text" 
+          id="username" 
+          [(ngModel)]="user.username" 
+          name="username" 
+          required 
+        />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-gray-700 font-medium mb-2">Password:</label>
+        <input 
+          class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+          type="password" 
+          id="password" 
+          [(ngModel)]="user.password" 
+          name="password" 
+          required 
+        />
+      </div>
+      <button 
+        type="submit" 
+        (click)="addUser()" 
+        class="w-full bg-green-500 text-white font-semibold py-2 rounded-lg hover:bg-green-600 transition duration-300"
+      >
+        Add User
+      </button>
+    </form>
+  </div>

@@ -1,0 +1,53 @@
+import { Component, inject } from '@angular/core';
+import { ProductService } from '../../product.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+}
+@Component({
+  selector: 'app-product-update-form',
+  imports: [FormsModule],
+  templateUrl: './product-update-form.component.html',
+  styleUrl: './product-update-form.component.css'
+})
+export class ProductUpdateFormComponent {
+ 
+  product: Product = { id: '', name: '', price: 0 };
+router=inject(Router);
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
+
+  ngOnInit(): void {
+    const productId = this.route.snapshot.paramMap.get('id');
+    console.log("Product ID from route:", productId); // Log the product ID to the console
+
+    if (productId) {
+      this.productService.getProductById(productId).subscribe((data: Product[]) => { // Expect array response
+        if (data.length > 0) {
+          this.product = data[0]; // Assign the first product in the array to the product object
+          console.log("Fetched product data:", this.product); // Log the product data to the console
+        } else {
+          console.error("No product found in the response.");
+        }
+      }, (error) => {
+        console.error("Error fetching product:", error);
+      });
+    } else {
+      console.error("No product ID found in route parameters.");
+    }
+  }
+
+  save() {
+    // Logic to save the updated product
+    this.productService.updateProduct(this.product.id, { name: this.product.name, price: this.product.price }).subscribe(() => {
+      console.log('Product updated successfully');
+      this.router.navigateByUrl('admin');
+      // Optionally redirect or show a success message
+    });
+  }
+}

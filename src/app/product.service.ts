@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 })
 
 export class ProductService {
-  private apiUrl = 'http://localhost:8888/products'; // Your Vert.x API URL
+  private apiUrl = 'http://localhost:8888/products';
+  private url='http://localhost:8888/productId' // Your Vert.x API URL
 
   constructor(private http: HttpClient) {}
 
@@ -21,21 +22,29 @@ export class ProductService {
 
   // Get product by ID
   getProductById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.url}/${id}`);
   }
 
   // Add a new product
   addProduct(product: { name: string; price: number }): Observable<any> {
-    return this.http.post<any>(this.apiUrl, product);
+    return this.http.post<any>(this.apiUrl, product,{
+      responseType: 'text' as 'json' // Specify responseType as text
+
+    });
   }
 
   // Update an existing product
-  updateProduct(id: string, product: { name: string; price: number }): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, product);
+  
+  updateProduct(id: string, product: { name: string; price: number }): Observable<string> {
+    return this.http.put<string>(`${this.apiUrl}/${id}`, product, {
+      responseType: 'text' as 'json' // Specify responseType as text
+    });
   }
 
   // Delete a product
   deleteProduct(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+   
+      return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
+    }
   }
-}
+

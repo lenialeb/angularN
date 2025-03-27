@@ -1,7 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 interface Product {
-  
+  id:string;
   name: string;
   price: number;
  

@@ -1,0 +1,12 @@
+<form >
+   
+    <div>
+      <label for="name">Product Name:</label>
+      <input class="border" type="text" id="name" [(ngModel)]="product.name" name="name" required />
+    </div>
+    <div>
+      <label for="price">Product Price:</label>
+      <input class="border" type="number" id="price" [(ngModel)]="product.price" name="price" required />
+    </div>
+    <button type="submit" (click)="save()">Update</button>
+  </form>

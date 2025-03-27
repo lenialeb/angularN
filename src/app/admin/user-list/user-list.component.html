@@ -1,0 +1,28 @@
+
+<div class="w-full flex ">
+    <table class="w-11/12 border-collapse border border-gray-300">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border border-gray-300 px-4 py-2">No</th>
+            <th class="border border-gray-300 px-4 py-2">Name</th>
+            <th class="border border-gray-300 px-4 py-2">Price</th>
+            <th class="border border-gray-300 px-4 py-2">Description</th>
+            <th class="border border-gray-300 px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userList; let i = index" class="hover:bg-gray-100">
+            <td class="border border-gray-300 px-4 py-2">{{ i + 1 }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ user.name }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ user.username }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ user.name }}</td>
+            <td class="border border-gray-300 px-4 py-2 flex flex-row gap-2">
+              <a>
+                <button class="bg-blue-500 text-white w-20 p-2 rounded hover:bg-blue-600" [routerLink]="[`/updateUser/${user.id}`]">Edit</button>
+              </a>
+              <button class="bg-red-500 text-white w-20 p-2 rounded hover:bg-red-600" (click)="delete(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>

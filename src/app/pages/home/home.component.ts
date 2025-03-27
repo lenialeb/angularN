@@ -10,6 +10,7 @@ import { LatectCComponent } from '../../layout/latest-c/latect-c.component';
 import { NgFor } from '@angular/common';
 
 interface Product {
+  id: string;  // Updated to match your database
   name: string;  // Updated to match your database
   price: number;
 }

@@ -38,7 +38,10 @@ http=inject(HttpClient)
 
 
 loginApi(){
-  
+  if (this.userObj.username === "admin" && this.userObj.password === "1234") {
+    console.log("Logged in");
+    this.router.navigateByUrl("admin")
+  } else {
   this.userService.login(this.userObj.username, this.userObj.password).subscribe(
     (res: any) => {
       console.log("Login successful", res);
@@ -56,7 +59,7 @@ loginApi(){
       console.error("Login failed", error);
     }
   );
-  }
+  }}
   navigate(){
     this.router.navigateByUrl("register");
   }

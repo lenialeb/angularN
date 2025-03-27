@@ -13,6 +13,17 @@ import { FormsComponent } from './pages/forms/forms.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { ProductUpdateFormComponent } from './admin/product-update-form/product-update-form.component';
+import { ProductAddComponent } from './admin/product-add/product-add.component';
+import { ProductListComponent } from './admin/product-list/product-list.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { DashGraphComponent } from './admin/dash-graph/dash-graph.component';
+import { InvoiceComponent } from './admin/invoice/invoice.component';
+import { TransactionListComponent } from './admin/transaction-list/transaction-list.component';
+import { UserUpdateFormComponent } from './admin/user-update-form/user-update-form.component';
+import { UserAddComponent } from './admin/user-add/user-add.component';
 
  export const routes: Routes = [
   {
@@ -22,7 +33,18 @@ import { RegisterComponent } from './pages/register/register.component';
     path:'login',component:LoginComponent
   },
   {path: 'register', component: RegisterComponent},
+  {path: 'adminav', component: AdminNavComponent},
+  {path: 'admin', component: AdminDashboardComponent},
+  {path: 'updatePro/:id', component: ProductUpdateFormComponent},
+  {path: 'updateUser/:id', component: UserUpdateFormComponent},
+  {path: 'addUser', component: UserAddComponent},
 
+  {path: 'addPro', component: ProductAddComponent},
+  {path: 'proList', component: ProductListComponent},
+  {path: 'userList', component: UserListComponent},
+  {path: 'dashB', component: DashGraphComponent},
+  {path: 'invoice', component: InvoiceComponent},
+  {path: 'transaction', component: TransactionListComponent},
   {
     path:'layout',component:LayoutComponent,
     children:[   {path: '', component: HomeComponent},
@@ -32,6 +54,7 @@ import { RegisterComponent } from './pages/register/register.component';
       {path: 'contact', component: ContactUsComponent},
       {path: 'term-conditions', component: TermsAndConditionsComponent},
       {path: 'about', component: AboutComponent},
+
       
       {
         path:'singlePost',component:SinglePostComponent
