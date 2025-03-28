@@ -15,6 +15,7 @@
        {{product?.price}}
       </p>
       <p class=" text-sm font-semibold text-yellow-500 " >loadd</p>
+      <button *ngIf="product" (click)="addToCart(product!)">Add to Cart</button>
     </div>
    
   </div>

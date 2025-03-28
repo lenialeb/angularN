@@ -1,0 +1,10 @@
+
+<div class="flex w-full justify-evenly items-center  ">
+<h2>Checkout</h2>
+<form >
+  <input type="text" [(ngModel)]="order.name" name="name" placeholder="Full Name" required>
+  <input type="email" [(ngModel)]="order.email"  name="email" placeholder="Email" required>
+  <input type="text" [(ngModel)]="order.address"  name="address" placeholder="Shipping Address" required>
+  <button  (click)="placeOrder()">Place Order</button>
+</form>
+</div>

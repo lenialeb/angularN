@@ -7,8 +7,10 @@
            <a href="#" class="no-underline"><li class="flex">POLITICS</li></a> 
            <a href="#" class="no-underline"><li class="flex">FASHION</li></a> 
            <a href="#" class="no-underline"><li class="flex">GENERAL KNOWLEDGE</li></a> 
-           <a href="#" class="no-underline" *ngIf="username"><li class="flex">GRAPHICS</li></a> 
+           <a href="#" class="no-underline" ><li class="flex">GRAPHICS</li></a> 
           
+           <a  class="no-underline relative" routerLink="cart" ><li class="flex">cart</li>
+            <span class="absolute bg-green-500 rounded-full w-4 h-4 left-6 top-3 text-center " ><p class="text-xs">{{cartItemsCount}}</p></span></a> 
 
         </ul>
         <div class="flex flex-row justify-evenly items-center gap-7">

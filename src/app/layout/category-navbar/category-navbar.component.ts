@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { UserService } from '../../user.service';
 import { NgIf } from '@angular/common';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-category-navbar',
@@ -12,7 +13,8 @@ import { NgIf } from '@angular/common';
 export class CategoryNavbarComponent {
   username: string | null = null;
   router= inject(Router);
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private cartService: CartService) {
+ 
    
   }
   ngOnInit(): void {
@@ -26,5 +28,8 @@ export class CategoryNavbarComponent {
     this.router.navigate(['/login']).then(() => {
       window.history.replaceState({}, document.title, '/login'); 
     }); 
+  }
+ get cartItemsCount(): number {
+   return this.cartService.getTotalItems()
   }
 }

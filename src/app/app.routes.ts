@@ -24,6 +24,8 @@ import { InvoiceComponent } from './admin/invoice/invoice.component';
 import { TransactionListComponent } from './admin/transaction-list/transaction-list.component';
 import { UserUpdateFormComponent } from './admin/user-update-form/user-update-form.component';
 import { UserAddComponent } from './admin/user-add/user-add.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
  export const routes: Routes = [
   {
@@ -32,6 +34,7 @@ import { UserAddComponent } from './admin/user-add/user-add.component';
   {
     path:'login',component:LoginComponent
   },
+  
   {path: 'register', component: RegisterComponent},
   {path: 'adminav', component: AdminNavComponent},
   {path: 'admin', component: AdminDashboardComponent},
@@ -54,7 +57,12 @@ import { UserAddComponent } from './admin/user-add/user-add.component';
       {path: 'contact', component: ContactUsComponent},
       {path: 'term-conditions', component: TermsAndConditionsComponent},
       {path: 'about', component: AboutComponent},
-
+      {
+        path:'cart',component:CartComponent
+      },
+      {
+        path:'checkout',component:CheckoutComponent
+      },
       
       {
         path:'singlePost',component:SinglePostComponent

@@ -1,0 +1,44 @@
+<div class="flex w-full justify-evenly items-center  ">
+<div class="w-11/12 flex flex-row  mt-10 ">
+<div class="w-8/12 flex flex-col  justify-evenly  items-center ">
+<h2 class="text-center text-2xl font-semibold mb-6">Your Cart</h2>
+<div *ngIf="cartItems.length === 0" class="text-center text-lg text-gray-600">Your cart is empty.</div>
+<ul class="space-y-2 w-8/12">
+  <li *ngFor="let item of cartItems" class="flex justify-evenly items-center p-4 w-full border border-gray-300 rounded-lg bg-gray-100">
+    <div class="flex items-center justify-evenly flex-row gap-7">
+      <p class="font-medium">{{ item.product.name }}</p> 
+      <p class="font-medium"> ${{ item.product.price }} </p> 
+
+     
+<!--      
+      <span *ngIf="item.quantity > 1"> ({{ item.quantity }})</span>
+      <span *ngIf="item.quantity === 1"> (1)</span> -->
+    </div>
+    <div class="flex gap-2">
+      <button (click)="increaseQuantity(item.product.id)" class="bg-green-500 text-white rounded px-2 py-1 hover:bg-green-600">+</button>
+      <input type="text" [(ngModel)]="item.quantity" (ngModelChange)="updateQuantity(item.product.id, item.quantity)" 
+      class="w-16 mx-2 p-1 border border-gray-400 rounded text-center" />
+      
+      <button (click)="decreaseQuantity(item.product.id)" class="bg-yellow-500 text-white rounded px-2 py-1 hover:bg-yellow-600">-</button>
+      <span *ngIf="item.quantity >= 1" class="font-bold">Total: ${{ item.product.price * item.quantity }}</span>
+
+      <button (click)="removeFromCart(item.product.id)" class="bg-red-500 text-white rounded px-2 py-1 hover:bg-red-600">Remove</button>
+    
+    </div>
+    
+  </li>
+</ul>
+<button (click)="clearCart()" class="mt-4 bg-red-600 text-white rounded px-4 py-2 hover:bg-red-700">Clear Cart</button>
+
+
+</div>
+<div *ngIf="cartItems.length !== 0"  class="flex  justify-evenly items-center   justify-center w-4/12">
+ <div class=" flex bg-gray-100 border border-gray-300 rounded-lg flex-col w-11/12 p-4 text-center ">
+<button (click)="navigate()" class="mt-4 bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700" >Check Out</button>
+ <!-- <a class="no-underline cursor-pointer" routerLink="checkout"><li class="flex ">DESIGN</li></a>  -->
+
+  <p  class="text-center text-lg mt-10 font-bold">Total Price: ${{ totalPrice.toFixed(2) }}</p>
+</div>
+  </div>
+</div>
+</div>
