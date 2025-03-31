@@ -22,7 +22,7 @@
                     <li [ngClass]="{'bg-gray-200': selectedComponent === 'transaction'}" class=" flex w-full p-2 mr-7 gap-7 border  rounded-md" (click)="changeComponent('transaction')"><span><i class="fas fa-user"></i></span>Transaction</li>
     
                     
-                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'invoices'}" class="flex w-full p-2 mr-7 gap-7  border  rounded-md" (click)="changeComponent('invoices')"><span><i class="fas fa-user"></i></span>Invoices</li>
+                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'orders'}" class="flex w-full p-2 mr-7 gap-7  border  rounded-md" (click)="changeComponent('orders')"><span><i class="fas fa-user"></i></span>Orders</li>
     
                 </ul>
             </div>
@@ -41,8 +41,8 @@
             <div *ngIf="adminService.component === 'transaction'" class="w-11/12">
                 <app-transaction-list></app-transaction-list>
             </div>
-            <div *ngIf="adminService.component === 'invoices'" class="w-11/12">
-                <app-invoice></app-invoice>
+            <div *ngIf="adminService.component === 'orders'" class="w-11/12">
+                <app-order></app-order>
             </div>
           <!-- <table class="w-11/12 border-collapse border border-gray-300">
             <thead class="bg-gray-200">

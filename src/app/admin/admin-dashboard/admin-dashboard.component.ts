@@ -11,6 +11,7 @@ import { TransactionListComponent } from '../transaction-list/transaction-list.c
 import { UserListComponent } from '../user-list/user-list.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { InvoiceComponent } from '../invoice/invoice.component';
+import { OrderComponent } from "../order/order.component";
 interface Product {
   id: string;
   name: string;
@@ -18,7 +19,7 @@ interface Product {
 }
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [AdminNavComponent, NgIf,NgClass, RouterLink,DashGraphComponent,TransactionListComponent,UserListComponent,ProductListComponent,InvoiceComponent],
+  imports: [AdminNavComponent, NgIf, NgClass, RouterLink, DashGraphComponent, TransactionListComponent, UserListComponent, ProductListComponent, InvoiceComponent, OrderComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })

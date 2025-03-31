@@ -1,1 +1,59 @@
-<p>invoice works!</p>
+<div class="flex mt-3">
+    <table class="w-11/12 border-collapse border border-gray-300">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2">No</th>
+          <th class="border border-gray-300 px-4 py-2">Name</th>
+          <th class="border border-gray-300 px-4 py-2">email</th>
+          <th class="border border-gray-300 px-4 py-2">address</th>
+          <th class="border border-gray-300 px-4 py-2">orders</th>
+          <th class="border border-gray-300 px-4 py-2">status</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of Order; let i = index" class="hover:bg-gray-100">
+          <td class="border border-gray-300 px-4 py-2">{{ i + 1 }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ product.email }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ product.address }}</td>
+
+          <td  class="border border-gray-300 px-4 py-2">
+            <ul>
+                <li *ngFor="let item of parseOrderDetails(product.order_details)">
+                  {{ item.product.name }} 
+                  <button (click)="toggleDetails(product.id)">Details</button>
+                  <div *ngIf="isDetailsVisible(product.id)">
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Price: {{ item.product.price  }}</p>
+                  </div>
+                </li>
+              </ul>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">{{ product.status }}</td>
+
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-center items-center mt-4">
+    <button 
+      (click)="changePage(currentPage - 1)" 
+      [disabled]="currentPage === 1" 
+      class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-l hover:bg-blue-600 disabled:opacity-50"
+    >
+      Previous
+    </button>
+    
+    <span class="mx-2 font-semibold">Page {{ currentPage }} of {{ totalPages() }}</span>
+    
+    <button 
+      (click)="changePage(currentPage + 1)" 
+      [disabled]="currentPage === totalPages() " 
+      
+      class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-r hover:bg-blue-600 disabled:opacity-50 disabled:bg-gray-400"
+    >
+      Next
+    </button>
+  </div>

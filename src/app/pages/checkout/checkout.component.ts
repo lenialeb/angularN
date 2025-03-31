@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../cart.service';
 import { CheckOutService } from '../../check-out.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -18,40 +19,58 @@ export class CheckoutComponent implements OnInit {
     orderDetail: '',
   };
 
-  constructor(private cartService: CartService, private checkoutService: CheckOutService) {}
+  constructor(
+    private cartService: CartService,
+    private checkoutService: CheckOutService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // Retrieve the user's name from local storage
-    const token = localStorage.getItem('jwtToken'); // Adjust the key as necessary
-    if (token) {
-      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode token to get user details
-      this.order.name = decodedToken.sub; // Get username from token (adjust as needed)
+    const token = localStorage.getItem('jwtToken');
+    console.log("Token to check out:", token); // Log the token
+
+    if (!token) {
+        console.error('No JWT token found. Redirecting to login.');
+        this.router.navigate(['/login']); // Redirect to login if no token
+        return;
     }
+
+    // Decode the token to get user details
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    this.order.name = decodedToken.sub; // Get username from token
 
     // Fetch cart items
     this.cartService.getCartItems().subscribe((items: any[]) => {
-      this.orderDetails = items;
-      this.order.orderDetail = JSON.stringify(this.orderDetails); // Initialize orderDetail
+        this.orderDetails = items;
+        this.order.orderDetail = JSON.stringify(this.orderDetails); // Initialize orderDetail
     });
+}
+placeOrder() {
+  const token = localStorage.getItem('jwtToken');
+  if (!token) {
+      console.error('No JWT token found in local storage.');
+      alert('You need to log in again.'); // Alert the user
+      return; // Exit early if no token
   }
 
-  placeOrder() {
-    // Ensure email and address are provided
-    if (!this.order.email || !this.order.address) {
+  if (!this.order.email || !this.order.address) {
       alert('Please provide your email and address.');
       return;
-    }
+  }
 
-    this.checkoutService.checkout(this.order).subscribe(
+  console.log('Token before placing order:', token); // Log the token
+  console.log('Token parts:', token.split('.')); // Log the token parts
+
+  this.checkoutService.checkout(this.order).subscribe(
       (response: any) => {
-        console.log(response);
-        alert('Order placed successfully');
-        this.cartService.clearCart(); // Clear cart after successful order
+          console.log(response);
+          alert('Order placed successfully');
+          this.cartService.clearCart(); // Clear cart after successful order
       },
       (error: any) => {
-        console.error('Error placing order:', error);
-        alert('There was an error placing your order. Please try again later.');
+          console.error('Error placing order:', error);
+          alert(`There was an error placing your order: ${error.error?.error || 'Please try again later.'}`);
       }
-    );
-  }
+  );
+}
 }

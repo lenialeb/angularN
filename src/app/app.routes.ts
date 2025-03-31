@@ -26,6 +26,7 @@ import { UserUpdateFormComponent } from './admin/user-update-form/user-update-fo
 import { UserAddComponent } from './admin/user-add/user-add.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { OrderComponent } from './admin/order/order.component';
 
  export const routes: Routes = [
   {
@@ -50,7 +51,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
   {path: 'transaction', component: TransactionListComponent},
   {
     path:'layout',component:LayoutComponent,
-    children:[   {path: '', component: HomeComponent},
+    children:[   {path: 'home', component: HomeComponent},
       {path: 'category', component: SingleCategoryComponent},
       {path: 'forms', component: FormsComponent},
       {path: 'post', component:SinglePostComponent },
@@ -62,6 +63,9 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
       },
       {
         path:'checkout',component:CheckoutComponent
+      },
+      {
+        path:'order',component:OrderComponent
       },
       
       {

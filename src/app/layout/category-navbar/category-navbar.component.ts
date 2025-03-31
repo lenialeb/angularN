@@ -24,6 +24,7 @@ export class CategoryNavbarComponent {
   logout(): void {
    
     localStorage.removeItem('token');
+    this.cartService.clearCart();
     this.username = null; 
     this.router.navigate(['/login']).then(() => {
       window.history.replaceState({}, document.title, '/login'); 

@@ -48,7 +48,7 @@ loginApi(){
     if(res.token
     ) {
       localStorage.setItem('token', res.token);
-      this.router.navigateByUrl("layout"); 
+      this.router.navigateByUrl("layout/home"); 
     }
     else {
       console.error("No token received");

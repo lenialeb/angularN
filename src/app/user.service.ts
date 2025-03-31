@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { jwtDecode } from 'jwt-decode';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,16 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
 
   // User login
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.loginUrl, { username, password });
+    return this.http.post<any>(this.loginUrl, { username, password }).pipe(
+      tap(response => {
+          if (response.token) {
+              localStorage.setItem('jwtToken', response.token); // Store the token
+              console.log('Token stored in local storage:', response.token); // Log the stored token
+          }
+      })
+  );;
   }
+
   protectedApiCall(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

@@ -16,7 +16,7 @@ interface CartItem {
 
 @Component({
   selector: 'app-cart',
-  imports: [NgIf,NgFor,FormsModule,RouterLink],
+  imports: [NgIf,NgFor,FormsModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
