@@ -22,7 +22,7 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
               console.log('Token stored in local storage:', response.token); // Log the stored token
           }
       })
-  );;
+  );
   }
 
   protectedApiCall(): Observable<any> {
@@ -61,7 +61,21 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
     if (token) {
       const decoded: any = jwtDecode(token);
       console.log('Decoded Token:', decoded);
-      return decoded.name;
+      // console.log(decoded);
+      return decoded.sub;
+    
+      
+    }
+    return null;
+  }
+  getidFromToken(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      console.log('Decoded Token:', decoded);
+      // console.log(decoded);
+      return decoded.id;
+    
       
     }
     return null;
