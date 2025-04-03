@@ -58,7 +58,14 @@ loginApi(){
     }
    
     },
+   
     (error) => {
+      // Check if the error response contains a specific message
+      if (error.error && error.error.error) {
+        alert(error.error.error); 
+      } else {
+        alert("An unexpected error occurred. Please try again."); 
+      }
       console.error("Login failed", error);
     }
   );

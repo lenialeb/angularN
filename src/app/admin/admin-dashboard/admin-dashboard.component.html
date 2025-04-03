@@ -1,75 +1,85 @@
 <div>
-    <app-admin-nav></app-admin-nav>
-    <div class="flex flex-col w-full h-screen ">
-        <div class="flex flex-col bg-gray-200 text-white text-center  p-4">
-            <h2 class="text text-black">Admin Dashboard</h2>
-            <div class="flex flex-row gap-4 ">
-              <button class="bg-green-500 w-36 p-2 border" [routerLink]="['/addPro']">Add Product</button>
-            <button class="bg-green-500 w-36 p-2 border" [routerLink]="['/addUser']">Add User</button>
-            </div>
-            
-
-          </div>
-        <div class="flex flex-row justify-evenly items-center w-full">
-        <div class="flex  w-1/5 ml-3  py-10 mt-2 shadow-lg   bg-slate-100 border justify-evenly items-center ">
-            
-            <div class="flex w-full justify-evenly items-center text-center">
-                <ul class="flex flex-col justify-evenly items-center space-y-10 w-full">
-                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'dashboard'}" class=" flex gap-7  w-full p-2 mr-7 border  rounded-md" (click)="changeComponent('dashboard')" ><span><i class="fas fa-user"></i></span>Dashboard</li>
-                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'products'}"  class=" flex w-full p-2 mr-7 gap-7 border  rounded-md" (click)="changeComponent('products')" > <span><i class="fas fa-user"></i></span>Product</li>
-                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'users'}" class=" flex w-full p-2 mr-7 gap-7 border  rounded-md" (click)="changeComponent('users')" > <span><i class="fas fa-user"></i></span>User</li>
-    
-                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'transaction'}" class=" flex w-full p-2 mr-7 gap-7 border  rounded-md" (click)="changeComponent('transaction')"><span><i class="fas fa-user"></i></span>Transaction</li>
-    
-                    
-                    <li [ngClass]="{'bg-gray-200': selectedComponent === 'orders'}" class="flex w-full p-2 mr-7 gap-7  border  rounded-md" (click)="changeComponent('orders')"><span><i class="fas fa-user"></i></span>Orders</li>
-    
-                </ul>
-            </div>
-        </div>
-        <div class="flex flex-col w-4/5 justify-evenly items-center ">
-           
-          <div *ngIf="adminService.component === 'dashboard'" class="w-11/12">
-            <app-dash-graph></app-dash-graph>
-        </div>
-            <div *ngIf="adminService.component === 'products'" class="w-11/12">
-                <app-product-list></app-product-list>
-            </div>
-            <div *ngIf="adminService.component === 'users'" class="w-11/12">
-                <app-user-list></app-user-list>
-            </div>
-            <div *ngIf="adminService.component === 'transaction'" class="w-11/12">
-                <app-transaction-list></app-transaction-list>
-            </div>
-            <div *ngIf="adminService.component === 'orders'" class="w-11/12">
-                <app-order></app-order>
-            </div>
-          <!-- <table class="w-11/12 border-collapse border border-gray-300">
-            <thead class="bg-gray-200">
-              <tr>
-                <th class="border border-gray-300 px-4 py-2">No</th>
-                <th class="border border-gray-300 px-4 py-2">Name</th>
-                <th class="border border-gray-300 px-4 py-2">Price</th>
-                <th class="border border-gray-300 px-4 py-2">Description</th>
-                <th class="border border-gray-300 px-4 py-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let product of productList; let i = index" class="hover:bg-gray-100">
-                <td class="border border-gray-300 px-4 py-2">{{ i + 1 }}</td>
-                <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
-                <td class="border border-gray-300 px-4 py-2">{{ product.price }}</td>
-                <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
-                <td class="border border-gray-300 px-4 py-2 flex flex-row gap-2">
-                  <a>
-                    <button class="bg-blue-500 text-white w-20 p-2 rounded hover:bg-blue-600" [routerLink]="[`/updatePro/${product.id}`]">Edit</button>
-                  </a>
-                  <button class="bg-red-500 text-white w-20 p-2 rounded hover:bg-red-600" (click)="delete(product.id)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table> -->
-        </div>
+  <app-admin-nav></app-admin-nav>
+  <div class="flex flex-col w-full h-screen">
+    <div class="flex flex-col bg-gray-200 text-white text-center p-4">
+      <h2 class="text text-black">Admin Dashboard</h2>
+      <div class="flex flex-row gap-4">
+        <button class="bg-green-500 w-36 p-2 border" [routerLink]="['/addPro']">
+          Add Product
+        </button>
+        <button
+          class="bg-green-500 w-36 p-2 border"
+          [routerLink]="['/addUser']"
+        >
+          Add User
+        </button>
+      </div>
     </div>
+    <div class="flex flex-row justify-evenly items-center w-full">
+      <div
+        class="flex w-1/5 ml-3 py-10 mt-2 shadow-lg bg-slate-100 border justify-evenly items-center"
+      >
+        <div class="flex w-full justify-evenly items-center text-center">
+          <ul
+            class="flex flex-col justify-evenly items-center space-y-10 w-full"
+          >
+            <li
+              [ngClass]="{ 'bg-gray-200': selectedComponent === 'dashboard' }"
+              class="flex gap-7 w-full p-2 mr-7 border rounded-md"
+              (click)="changeComponent('dashboard')"
+            >
+              <span><i class="fas fa-user"></i></span>Dashboard
+            </li>
+            <li
+              [ngClass]="{ 'bg-gray-200': selectedComponent === 'products' }"
+              class="flex w-full p-2 mr-7 gap-7 border rounded-md"
+              (click)="changeComponent('products')"
+            >
+              <span><i class="fas fa-user"></i></span>Product
+            </li>
+            <li
+              [ngClass]="{ 'bg-gray-200': selectedComponent === 'users' }"
+              class="flex w-full p-2 mr-7 gap-7 border rounded-md"
+              (click)="changeComponent('users')"
+            >
+              <span><i class="fas fa-user"></i></span>User
+            </li>
 
+            <li
+              [ngClass]="{ 'bg-gray-200': selectedComponent === 'transaction' }"
+              class="flex w-full p-2 mr-7 gap-7 border rounded-md"
+              (click)="changeComponent('transaction')"
+            >
+              <span><i class="fas fa-user"></i></span>Transaction
+            </li>
+
+            <li
+              [ngClass]="{ 'bg-gray-200': selectedComponent === 'orders' }"
+              class="flex w-full p-2 mr-7 gap-7 border rounded-md"
+              (click)="changeComponent('orders')"
+            >
+              <span><i class="fas fa-user"></i></span>Orders
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col w-4/5 justify-evenly items-center">
+        <div *ngIf="adminService.component === 'dashboard'" class="w-11/12">
+          <app-dash-graph></app-dash-graph>
+        </div>
+        <div *ngIf="adminService.component === 'products'" class="w-11/12">
+          <app-product-list></app-product-list>
+        </div>
+        <div *ngIf="adminService.component === 'users'" class="w-11/12">
+          <app-user-list></app-user-list>
+        </div>
+        <div *ngIf="adminService.component === 'transaction'" class="w-11/12">
+          <app-transaction-list></app-transaction-list>
+        </div>
+        <div *ngIf="adminService.component === 'orders'" class="w-11/12">
+          <app-order></app-order>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

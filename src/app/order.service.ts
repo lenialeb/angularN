@@ -15,7 +15,8 @@ interface order{
 })
 export class OrderService {
 
-  private orderUrl = 'http://localhost:8888/orders'; // Your Vert.x API URL
+  private orderUrl = 'http://localhost:8888/orders'; 
+  private update='http://localhost:8888';// Your Vert.x API URL
   constructor(private http: HttpClient) { }
   
  getOrders(): Observable<order[]> {
@@ -25,5 +26,9 @@ export class OrderService {
       return this.getOrders().pipe(
         map(orders => orders.length)
       );
+    }
+    
+    updateOrderStatus(orderId: string, updatePayload: any): Observable<any> {
+      return this.http.put(`${this.update}/updateStatus/${orderId}`, updatePayload,{responseType:'text'});
     }
 }

@@ -95,5 +95,25 @@ search(){
       return match;
     });
 }
+// updateOrderStatus(orderId: string, status: string) {
+//   const updatePayload = { status: status };
+  
+//   this.
+  
+// }
+updateOrderStatus(orderId: string, status: string) {
+  const updatePayload = { status: status };
+  
+  this.orderService.updateOrderStatus(orderId, updatePayload).subscribe(
+    response => {
+      console.log('Order status updated successfully', response);
+      // Optionally, you can refresh the orders or show a success message
+    },
+    error => {
+      console.error('Error updating order status', error);
+      alert('Failed to update order status. Please try again.');
+    }
+  );
+}
 
 }

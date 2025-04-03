@@ -53,7 +53,18 @@
               </li>
             </ul>
           </td>
+
           <td class="border border-gray-300 px-4 py-2">
+            <select [(ngModel)]="product.status" (change)="updateOrderStatus(product.id, product.status)" [ngClass]="{
+              'bg-yellow-500 hover:bg-yellow-600': product.status === 'Pending',
+              'bg-green-500 hover:bg-green-600': product.status === 'Completed',
+              'bg-blue-500': product.status !== 'Pending' && product.status !== 'Completed'
+            }" class="border border-gray-300 rounded p-1">
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </td>
+          <!-- <td class="border border-gray-300 px-4 py-2">
             <button
             [ngClass]="{
               'bg-yellow-500 hover:bg-yellow-600': product.status === 'Pending',
@@ -63,7 +74,7 @@
             class="text-white font-semibold py-2 px-4 rounded-r disabled:opacity-50 disabled:bg-gray-400"
             [disabled]="product.status === 'Pending' || product.status === 'Completed'">
             {{ product.status }}
-          </button></td>        </tr>
+          </button></td>        </tr> -->
       </tbody>
     </table>
   </div>
