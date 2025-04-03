@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +46,10 @@ export class ProductService {
    
       return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
     }
+     getProductCount(): Observable<number> {
+        return this.getProducts().pipe(
+          map(products => products.length)
+        );
+      }
   }
 

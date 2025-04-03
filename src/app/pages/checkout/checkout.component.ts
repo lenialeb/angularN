@@ -21,6 +21,9 @@ export class CheckoutComponent implements OnInit {
     name: '',
     email: '',
     address: '',
+    phone:'',
+    city:'',
+    postalCode:'',
     orderDetail: '',
   };
   id: string | null = null;

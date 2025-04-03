@@ -29,7 +29,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of paginatedProducts; let i = index" class="hover:bg-gray-100">
-          <td class="border border-gray-300 px-4 py-2">{{ i + 1 }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.price }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>

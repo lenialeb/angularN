@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 interface order{
   id:string,
   name:string,
@@ -21,4 +21,9 @@ export class OrderService {
  getOrders(): Observable<order[]> {
     return this.http.get<order[]>(this.orderUrl);
   }
+  getOrderCount():Observable<number> {
+      return this.getOrders().pipe(
+        map(orders => orders.length)
+      );
+    }
 }

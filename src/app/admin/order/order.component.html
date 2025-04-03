@@ -34,7 +34,7 @@
           *ngFor="let product of paginatedOrders; let i = index"
           class="hover:bg-gray-100"
         >
-          <td class="border border-gray-300 px-4 py-2">{{ i + 1 }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.email }}</td>
           <td class="border border-gray-300 px-4 py-2">
@@ -53,8 +53,17 @@
               </li>
             </ul>
           </td>
-          <td class="border border-gray-300 px-4 py-2">{{ product.status }}</td>
-        </tr>
+          <td class="border border-gray-300 px-4 py-2">
+            <button
+            [ngClass]="{
+              'bg-yellow-500 hover:bg-yellow-600': product.status === 'Pending',
+              'bg-green-500 hover:bg-green-600': product.status === 'Completed',
+              'bg-blue-500': product.status !== 'Pending' && product.status !== 'Completed'
+            }"
+            class="text-white font-semibold py-2 px-4 rounded-r disabled:opacity-50 disabled:bg-gray-400"
+            [disabled]="product.status === 'Pending' || product.status === 'Completed'">
+            {{ product.status }}
+          </button></td>        </tr>
       </tbody>
     </table>
   </div>

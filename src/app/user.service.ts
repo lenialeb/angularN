@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { jwtDecode } from 'jwt-decode';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +79,10 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
       
     }
     return null;
+  }
+  getUserCount(): Observable<number> {
+    return this.getUsers().pipe(
+      map(users => users.length)
+    );
   }
 }
