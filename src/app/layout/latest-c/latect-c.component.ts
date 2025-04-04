@@ -3,7 +3,8 @@ interface Product{
   
   name: string;
   price: number;
- 
+ description: string;
+  image: string;
 }
 @Component({
   selector: 'app-latect-c',
