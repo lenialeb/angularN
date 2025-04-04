@@ -23,6 +23,31 @@
         required 
       />
     </div>
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700 font-medium mb-2">Product Description:</label>
+      <input 
+        class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+        type="text" 
+        id="name" 
+        [(ngModel)]="product.description" 
+        name="description" 
+        required 
+      />
+    </div>
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700 font-medium mb-2">Product Image:</label>
+      <input 
+        class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+        type="file" 
+        id="name" 
+      
+        (change)="onFileSelected($event)"
+        [(ngModel)]="product.image" 
+        name="image" 
+        required 
+      />
+  
+    </div>
     <button 
       type="submit" 
       (click)="addProduct()" 

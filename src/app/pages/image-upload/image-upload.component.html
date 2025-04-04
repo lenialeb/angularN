@@ -1,0 +1,6 @@
+<input type="file" (change)="onFileSelected($event)" />
+<div class="flex flex-wrap mt-4">
+  <div *ngFor="let imageUrl of imageUrls" class="m-2">
+    <img [src]="imageUrl" alt="Uploaded Image" class="w-32 h-32 object-cover rounded shadow" />
+  </div>
+</div>

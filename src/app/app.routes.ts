@@ -27,6 +27,8 @@ import { UserAddComponent } from './admin/user-add/user-add.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { OrderComponent } from './admin/order/order.component';
+import { SuccessComponent } from './pages/success/success.component';
+import { ImageUploadComponent } from './pages/image-upload/image-upload.component';
 
  export const routes: Routes = [
   {
@@ -49,9 +51,12 @@ import { OrderComponent } from './admin/order/order.component';
   {path: 'dashB', component: DashGraphComponent},
   {path: 'invoice', component: InvoiceComponent},
   {path: 'transaction', component: TransactionListComponent},
+  {path: 'success', component: SuccessComponent},
+  {path: 'image', component: ImageUploadComponent},
   {
     path:'layout',component:LayoutComponent,
-    children:[   {path: 'home', component: HomeComponent},
+    children:[    {path: 'home', component: HomeComponent},
+ 
       {path: 'category', component: SingleCategoryComponent},
       {path: 'forms', component: FormsComponent},
       {path: 'post', component:SinglePostComponent },

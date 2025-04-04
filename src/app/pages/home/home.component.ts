@@ -14,6 +14,8 @@ interface Product {
   id: string;  // Updated to match your database
   name: string;  // Updated to match your database
   price: number;
+  description: string;
+  image: string;
 }
 
 @Component({
