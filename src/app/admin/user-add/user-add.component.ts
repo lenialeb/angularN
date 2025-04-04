@@ -21,6 +21,7 @@ constructor(private userService:UserService){}
 addUser(){
   this.userService.register(this.user).subscribe((res:any)=>{
     console.log("User added successfully",res);
+    alert("User added successfully");
 this.router.navigateByUrl('admin')
   }, (error) => {
     console.error("Product addition failed", error);

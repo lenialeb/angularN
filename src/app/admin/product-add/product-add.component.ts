@@ -83,6 +83,7 @@ export class ProductAddComponent {
       this.productService.addProduct(this.product).subscribe(
         (res: any) => {
           console.log("Product added successfully", res);
+          alert("Product added successfully");
           this.router.navigateByUrl('admin');
         },
         (error) => {

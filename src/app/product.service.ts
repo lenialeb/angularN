@@ -35,7 +35,7 @@ export class ProductService {
 
   // Update an existing product
   
-  updateProduct(id: string, product: { name: string; price: number }): Observable<string> {
+  updateProduct(id: string, product: { name: string; price: number; description:string; image:string }): Observable<string> {
     return this.http.put<string>(`${this.apiUrl}/${id}`, product, {
       responseType: 'text' as 'json' // Specify responseType as text
     });

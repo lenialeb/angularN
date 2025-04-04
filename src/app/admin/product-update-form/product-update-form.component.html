@@ -1,12 +1,55 @@
-<form >
-   
-    <div>
-      <label for="name">Product Name:</label>
-      <input class="border" type="text" id="name" [(ngModel)]="product.name" name="name" required />
-    </div>
-    <div>
-      <label for="price">Product Price:</label>
-      <input class="border" type="number" id="price" [(ngModel)]="product.price" name="price" required />
-    </div>
-    <button type="submit" (click)="save()">Update</button>
-  </form>
+<form class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-8" (ngSubmit)="save()">
+  <div class="mb-4">
+    <label for="name" class="block text-gray-700 font-semibold mb-2">Product Name:</label>
+    <input 
+      class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+      type="text" 
+      id="name" 
+      [(ngModel)]="product.name" 
+      name="name" 
+      required 
+    />
+  </div>
+  
+  <div class="mb-4">
+    <label for="price" class="block text-gray-700 font-semibold mb-2">Product Price:</label>
+    <input 
+      class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+      type="number" 
+      id="price" 
+      [(ngModel)]="product.price" 
+      name="price" 
+      required 
+    />
+  </div>
+  
+  <div class="mb-4">
+    <label for="description" class="block text-gray-700 font-semibold mb-2">Product Description:</label>
+    <input 
+      class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+      type="text" 
+      id="description" 
+      [(ngModel)]="product.description" 
+      name="description" 
+      required 
+    />
+  </div>
+  
+  <div class="mb-4">
+    <label for="image" class="block text-gray-700 font-semibold mb-2">Product Image:</label>
+    <input 
+      class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
+      type="file" 
+      id="image" 
+      (change)="onFileSelected($event)" 
+      required 
+    />
+  </div>
+  
+  <button 
+    type="submit" 
+    class="w-full bg-green-500 text-white font-semibold py-2 rounded-lg hover:bg-green-600 transition duration-300"
+  >
+    Update
+  </button>
+</form>
