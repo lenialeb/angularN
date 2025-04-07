@@ -1,1 +1,48 @@
-<p>about works!</p>
+<div class="container mx-auto px-4 py-10">
+    <h1 class="text-4xl font-bold text-center mb-8 text-green-800">About Us</h1>
+    
+    <div class="flex flex-col md:flex-row mb-10">
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold mb-4 text-green-800">Our Mission</h2>
+            <p class="text-gray-700">
+                Our mission is to provide exceptional service and quality products that enhance the lives of our customers.
+            </p>
+        </div>
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold mb-4 text-green-800">Our Vision</h2>
+            <p class="text-gray-700">
+                We envision a world where our products are accessible to everyone, making everyday life easier and more enjoyable.
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row mb-10">
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold mb-4 text-green-800">Our Team</h2>
+            <p class="text-gray-700">
+                Our team is composed of dedicated professionals who are passionate about what they do and committed to delivering the best results.
+            </p>
+        </div>
+        <div class="md:w-1/2 p-4">
+            <img src="/assets/images/img1.jpg" alt="Team" class="rounded-lg shadow-lg w-full h-auto">        
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h2 class="text-2xl font-semibold mb-4 text-green-800">Key Statistics</h2>
+        <div class="flex justify-center space-x-8">
+            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-green-700">10+</h3>
+                <p class="text-gray-600">Years of Experience</p>
+            </div>
+            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-green-700">{{userCount}}+</h3>
+                <p class="text-gray-600">Happy Customers</p>
+            </div>
+            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-green-700">{{productCount}}+</h3>
+                <p class="text-gray-600">Products Offered</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../user.service';
-import { ProductService } from '../../product.service';
-import { OrderService } from '../../order.service';
+import { UserService } from '../../../services/user/user.service';
+import { ProductService } from '../../../services/product/product.service';
+import { OrderService } from '../../../services/product/order.service';
 
 @Component({
   selector: 'app-dash-graph',

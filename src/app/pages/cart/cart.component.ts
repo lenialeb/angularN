@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../../services/product/cart.service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';

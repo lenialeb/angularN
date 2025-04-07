@@ -54,10 +54,10 @@
 //   }
 // }
 import { Component, inject } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { StorageService } from '../../storage.service';
+import { StorageService } from '../../../services/storage/storage.service';
 
 interface Product {
   id: string;
@@ -96,7 +96,7 @@ export class ProductUpdateFormComponent {
         } else {
           console.error("No product found in the response.");
         }
-      }, (error) => {
+      }, (error: any) => {
         console.error("Error fetching product:", error);
       });
     } else {
@@ -130,10 +130,10 @@ export class ProductUpdateFormComponent {
           console.log('Product updated successfully');
 
           this.router.navigateByUrl('admin');
-        }, (error) => {
+        }, (error: any) => {
           console.error("Error updating product:", error);
         });
-      }, (error) => {
+      }, (error: any) => {
         console.error("Error uploading image:", error);
       });
     } else {
@@ -141,7 +141,7 @@ export class ProductUpdateFormComponent {
       this.productService.updateProduct(this.product.id, productData).subscribe(() => {
         console.log('Product updated successfully');
         this.router.navigateByUrl('admin');
-      }, (error) => {
+      }, (error: any) => {
         console.error("Error updating product:", error);
       });
     }

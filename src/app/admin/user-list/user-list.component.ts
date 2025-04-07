@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 interface User {
@@ -31,7 +31,7 @@ fetchUsers(){
     this.userList=res;
     this.filteredUser=res;
     console.log('Fetched users:',this.userList);
-  },error=>{
+  },(error: any)=>{
     console.error('Error fetching users:',error);    
   })
 }
@@ -39,7 +39,7 @@ delete(id:string){
   this.userService.deleteUser(id).subscribe((res:any)=>{
     console.log("User deleted successfully",res);
     this.fetchUsers();
-  },(error)=>{
+  },(error: any)=>{
     console.error("User deletion failed",error);
   })
 }

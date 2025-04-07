@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { NgIf } from '@angular/common';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../../services/product/cart.service';
 
 @Component({
   selector: 'app-category-navbar',

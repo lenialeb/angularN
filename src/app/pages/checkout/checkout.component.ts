@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
 import { FormsModule } from '@angular/forms';
-import { CartService } from '../../cart.service';
-import { CheckOutService } from '../../check-out.service';
+import { CartService } from '../../../services/product/cart.service';
+import { CheckOutService } from '../../../services/payment/check-out.service';
 import { Router } from '@angular/router';
-import { PaymentService } from '../../payment.service';
-import { UserService } from '../../user.service';
+import { PaymentService } from '../../../services/payment/payment.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-checkout',

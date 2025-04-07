@@ -4,7 +4,6 @@ import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { AboutComponent } from './pages/about/about.component';
 import { NgModule } from '@angular/core';
-
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { SingleCategoryComponent } from './pages/single-category/single-category.component';
 import { CommentFormComponent } from './comments/comment-form/comment-form.component';
@@ -28,23 +27,18 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { OrderComponent } from './admin/order/order.component';
 import { SuccessComponent } from './pages/success/success.component';
-import { ImageUploadComponent } from './pages/image-upload/image-upload.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+// import { ImageUploadComponent } from './pages/image-upload/image-upload.component';
 
  export const routes: Routes = [
-  {
-    path:'',component:LoginComponent
-  },
-  {
-    path:'login',component:LoginComponent
-  },
-  
+  {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'adminav', component: AdminNavComponent},
   {path: 'admin', component: AdminDashboardComponent},
   {path: 'updatePro/:id', component: ProductUpdateFormComponent},
   {path: 'updateUser/:id', component: UserUpdateFormComponent},
   {path: 'addUser', component: UserAddComponent},
-
   {path: 'addPro', component: ProductAddComponent},
   {path: 'proList', component: ProductListComponent},
   {path: 'userList', component: UserListComponent},
@@ -52,36 +46,27 @@ import { ImageUploadComponent } from './pages/image-upload/image-upload.componen
   {path: 'invoice', component: InvoiceComponent},
   {path: 'transaction', component: TransactionListComponent},
   {path: 'success', component: SuccessComponent},
-  {path: 'image', component: ImageUploadComponent},
+  // {path: 'image', component: ImageUploadComponent},
   {
     path:'layout',component:LayoutComponent,
-    children:[    {path: 'home', component: HomeComponent},
- 
+    children:
+    [   
+      {path: 'home', component: HomeComponent},
+      {path: 'productDetails/:id', component: ProductDetailsComponent},
+
       {path: 'category', component: SingleCategoryComponent},
       {path: 'forms', component: FormsComponent},
       {path: 'post', component:SinglePostComponent },
       {path: 'contact', component: ContactUsComponent},
       {path: 'term-conditions', component: TermsAndConditionsComponent},
       {path: 'about', component: AboutComponent},
-      {
-        path:'cart',component:CartComponent
-      },
-      {
-        path:'checkout',component:CheckoutComponent
-      },
-      {
-        path:'order',component:OrderComponent
-      },
-      
-      {
-        path:'singlePost',component:SinglePostComponent
-      },
-      {
-        path:'commentF',component:CommentFormComponent
-      },
-      {
-        path:'commentL',component:CommentListComponent
-      }]
+      {path:'cart',component:CartComponent},
+      {path:'checkout',component:CheckoutComponent},
+      {path:'order',component:OrderComponent },
+      {path:'singlePost',component:SinglePostComponent},
+      {path:'commentF',component:CommentFormComponent},
+      {path:'commentL',component:CommentListComponent}
+    ]
   },
  
     

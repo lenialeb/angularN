@@ -35,10 +35,10 @@
   
 // }
 import { Component, inject } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StorageService } from '../../storage.service';
+import { StorageService } from '../../../services/storage/storage.service';
 
 @Component({
   selector: 'app-product-add',

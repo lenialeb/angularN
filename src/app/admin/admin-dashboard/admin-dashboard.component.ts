@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { AdminNavComponent } from '../admin-nav/admin-nav.component';
 import { FooterComponent } from '../../layout/footer/footer.component';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { AdminServiceService } from '../../admin-service.service';
+import { AdminServiceService } from '../../../services/admin/admin-service.service';
 import { AboutComponent } from "../../pages/about/about.component";
 import { DashGraphComponent } from '../dash-graph/dash-graph.component';
 import { TransactionListComponent } from '../transaction-list/transaction-list.component';

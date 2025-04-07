@@ -1,6 +1,6 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { OrderService } from '../../order.service';
+import { OrderService } from '../../../services/product/order.service';
 import { FormsModule } from '@angular/forms';
 interface order{
   id:string,

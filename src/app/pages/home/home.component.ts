@@ -3,12 +3,12 @@
   
 
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { CardComponent } from '../../layout/card/card.component';
 import { SubscriptionFormComponent } from '../../subscription-form/subscription-form.component';
 import { LatectCComponent } from '../../layout/latest-c/latect-c.component';
 import { NgFor } from '@angular/common';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../../services/product/cart.service';
 
 interface Product {
   id: string;  // Updated to match your database

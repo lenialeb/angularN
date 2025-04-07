@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { error } from 'console';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../services/user/user.service';
 
 
 @Component({
@@ -59,7 +59,7 @@ loginApi(){
    
     },
    
-    (error) => {
+    (error: { error: { error: any; }; }) => {
       // Check if the error response contains a specific message
       if (error.error && error.error.error) {
         alert(error.error.error); 
