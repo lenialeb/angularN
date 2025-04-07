@@ -35,12 +35,23 @@
       />
     </div>
     <div class="mb-4">
+      <label for="category" class="block text-gray-700 font-medium mb-2">Product Category:</label>
+      <select 
+        class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
+        id="category" 
+        [(ngModel)]="product.category" 
+        name="category" 
+        required
+      >
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+    <div class="mb-4">
       <label for="name" class="block text-gray-700 font-medium mb-2">Product Image:</label>
       <input 
         class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" 
         type="file" 
         id="name" 
-      
         (change)="onFileSelected($event)"
         [(ngModel)]="product.image" 
         name="image" 
@@ -48,6 +59,7 @@
       />
   
     </div>
+  
     <button 
       type="submit" 
       (click)="addProduct()" 

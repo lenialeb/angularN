@@ -10,6 +10,9 @@
   </div>
   <div class="text-center">
     <div class="font-bold text-xl mb-2 mt-2">{{product?.name}}</div>
+    <div class="font-bold text-xl mb-2 mt-2">{{product?.category}}</div>
+
+
     <p class="text-gray-700 text-base">{{product?.price}}</p>
     <p class="text-gray-700 text-base">{{product?.description?.substring(0,20)}}...
       <span>    <button *ngIf="product" (click)="navigate(product.id)" class="text-yellow-500  rounded hover:transition duration-300 ">view detail</button>

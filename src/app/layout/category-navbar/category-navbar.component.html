@@ -1,16 +1,14 @@
 <nav class="fixed 
 inset-x-0 
 top-0">
-    <div class="bg-blue-100 text-blue-400 w-full flex justify-evenly items-center gap-7 ">
+    <div class="bg-blue-100  w-full flex justify-evenly items-center gap-7 ">
         <ul class=" w-9/12 h-full mt-3 p-1   flex flex-row -space-x-64 justify-around items-center">
-           <a class="no-underline cursor-pointer" routerLink="home"><li class="flex ">Home</li></a> 
-           <!-- <a class="no-underline cursor-pointer" routerLink="forms"> <li class="flex">INSPIRATION</li></a>  -->
-           <a class="no-underline cursor-pointer" ><li class="flex" routerLink="about">About</li></a> 
-           <a class="no-underline cursor-pointer"><li class="flex" routerLink="contact">ContactUs</li></a> 
-           <!-- <a class="no-underline cursor-pointer"><li class="flex">FASHION</li></a>  -->
-           <!-- <a href="#" class="no-underline"><li class="flex">GENERAL KNOWLEDGE</li></a> 
-           <a href="#" class="no-underline" ><li class="flex">GRAPHICS</li></a>  -->
-           <a  class="no-underline relative" routerLink="cart" ><li class="flex"><i class="fas fa-shopping-cart"></i></li>
+           <a class="no-underline cursor-pointer" routerLink="home"><li class="flex  text-green-800 font-bold">Home</li></a> 
+          
+           <a class="no-underline cursor-pointer" ><li class="flex text-green-800 font-bold" routerLink="about">About</li></a> 
+           <a class="no-underline cursor-pointer"><li class="flex text-green-800 font-bold" routerLink="contact">ContactUs</li></a> 
+          
+           <a  class="no-underline relative" routerLink="cart" ><li class="flex"><i class="fas fa-shopping-cart text-green-800 "></i></li>
             <span *ngIf="cartItemsCount !== 0" class="absolute bg-green-500 rounded-full w-4 h-4 left-6 top-3 text-center " ><p class="text-xs">{{cartItemsCount}}</p></span></a> 
             
         </ul>

@@ -1,4 +1,4 @@
-<div class="mt-20">
+<!-- <div class="mt-20">
     <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mb-36">
         <div class="p-6">
             <div class="flex justify-center">
@@ -10,4 +10,74 @@
        
         </div>
     </div>
-</div>
+</div> -->
+<div class="w-full flex flex-col justify-evenly items-center mb-36">
+    <div class="w-10/12 justify-evenly items-center flex flex-row">
+      <div
+        class="w-9/12 flex flex-col h-full p-1 shadow-lg justify-evenly items-center"
+      >
+        <div class="w-full justify-evenly  items-center flex">
+          <img
+            class="w-full"
+            [src]="productDetails?.image"
+            alt="{{ productDetails?.name }}"
+          />
+        </div>
+        <div class="flex flex-row ml-48 w-full gap-3 items-start">
+          <h1 class="text-sm text-red-400">Design</h1>
+          <h1 class="text-sm text-green-600">Feature</h1>
+          <h1 class="text-sm text-blue-600">Views -1290</h1>
+          <h1 class="text-sm text-yellow-500">Date: 20/1/2017</h1>
+        </div>
+        <div class="flex flex-col w-full p-2">
+          <h1>Description for single post</h1>
+          <p>{{productDetails?.description}}</p>
+          <p>{{productDetails?.category}}</p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
+            excepturi harum, saepe ea obcaecati dolorem facilis officia aspe
+            adipisicing elit. Odio excepturi harum, saepe ea obcaecati dolorem
+            facilis officia aspe adipisicing elit. Odio excepturi harum, saepe ea
+            obcaecati dolorem facilis officia aspe adipisicing elit. Odio
+            excepturi harum, saepe ea obcaecati dolorem facilis officia aspe
+            adipisicing elit. Odio excepturi harum, saepe ea obcaecati dolorem
+            facilis officia aspe adipisicing elit. Odio excepturi harum, saepe ea
+            obcaecati dolorem facilis officia aspe adipisicing elit. Odio
+            excepturi harum, saepe ea obcaecati dolorem facilis officia aspe
+            adipisicing elit. Odio excepturi harum, saepe ea obcaecati dolorem
+            facilis officia aspe adipisicing elit. Odio excepturi harum, saepe ea
+            obcaecati dolorem facilis officia aspe adipisicing elit. Odio
+            excepturi harum, saepe ea obcaecati dolorem facilis officia asperiores
+            dolores quasi accusamus fuga consectetur. Officiis nam non possimus
+            voluptatem, cumque deleniti?
+          </p>
+        </div>
+        <div class="w-full mt-5 flex flex-col gap-2 justify-evenly items-center">
+          <app-comment-form></app-comment-form>
+        </div>
+          <div class="w-full mt-5 flex flex-col gap-2 justify-evenly items-center">
+            <app-comment-list></app-comment-list>
+            
+          </div>
+        
+      </div>
+  
+      <div class="w-3/12 flex flex-col p-1 shadow-lg justify-evenly items-center">
+        <h1 class="text-green-800 font-bold text-2xl">Related Products</h1>
+        <div *ngFor="let product of productList">
+            <app-latect-c [product]="product"></app-latect-c>
+        </div>
+    
+        <!-- <app-latect-c [product]="productDetails"></app-latect-c >
+        <app-latect-c [product]="productDetails"></app-latect-c >
+        <app-latect-c [product]="productDetails"></app-latect-c >
+        <app-latect-c [product]="productDetails"></app-latect-c > -->
+     </div>
+    </div>
+    <div class="flex w-full mt-10">
+      <app-subscription-form></app-subscription-form>
+    </div>
+    
+    
+  </div>
+  

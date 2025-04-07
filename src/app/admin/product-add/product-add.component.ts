@@ -39,11 +39,12 @@ import { ProductService } from '../../../services/product/product.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from '../../../services/storage/storage.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-product-add',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,NgFor],
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.css']
 })
@@ -52,9 +53,10 @@ export class ProductAddComponent {
     name: '',
     price: 0,
     description: '',
-    image: ''
+    image: '',
+    category: '',
   };
-
+  categories = ['Electronics', 'Clothing', 'Books', 'Home', 'Beauty'];
   private selectedFile: File | null = null; // To store the selected file
   router = inject(Router);
 

@@ -34,7 +34,9 @@
           *ngFor="let product of paginatedOrders; let i = index"
           class="hover:bg-gray-100"
         >
-          <td class="border border-gray-300 px-4 py-2">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td class="border border-gray-300 px-4 py-2">
+            {{ (currentPage - 1) * pageSize + i + 1 }}
+          </td>
           <td class="border border-gray-300 px-4 py-2">{{ product.name }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ product.email }}</td>
           <td class="border border-gray-300 px-4 py-2">
@@ -55,49 +57,47 @@
           </td>
 
           <td class="border border-gray-300 px-4 py-2">
-            <select [(ngModel)]="product.status" (change)="updateOrderStatus(product.id, product.status)" [ngClass]="{
-              'bg-yellow-500 hover:bg-yellow-600': product.status === 'Pending',
-              'bg-green-500 hover:bg-green-600': product.status === 'Completed',
-              'bg-blue-500': product.status !== 'Pending' && product.status !== 'Completed'
-            }" class="border border-gray-300 rounded p-1">
+            <select
+              [(ngModel)]="product.status"
+              (change)="updateOrderStatus(product.id, product.status)"
+              [ngClass]="{
+                'bg-yellow-500 hover:bg-yellow-600':
+                  product.status === 'Pending',
+                'bg-green-500 hover:bg-green-600':
+                  product.status === 'Completed',
+                'bg-blue-500':
+                  product.status !== 'Pending' && product.status !== 'Completed'
+              }"
+              class="border border-gray-300 rounded p-1"
+            >
               <option value="Pending">Pending</option>
               <option value="Completed">Completed</option>
             </select>
           </td>
-          <!-- <td class="border border-gray-300 px-4 py-2">
-            <button
-            [ngClass]="{
-              'bg-yellow-500 hover:bg-yellow-600': product.status === 'Pending',
-              'bg-green-500 hover:bg-green-600': product.status === 'Completed',
-              'bg-blue-500': product.status !== 'Pending' && product.status !== 'Completed'
-            }"
-            class="text-white font-semibold py-2 px-4 rounded-r disabled:opacity-50 disabled:bg-gray-400"
-            [disabled]="product.status === 'Pending' || product.status === 'Completed'">
-            {{ product.status }}
-          </button></td>        </tr> -->
+        </tr>
       </tbody>
     </table>
   </div>
 
-<div class="flex justify-center items-center mt-4">
-  <button
-    (click)="changePage(currentPage - 1)"
-    [disabled]="currentPage === 1"
-    class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-l hover:bg-blue-600 disabled:opacity-50"
-  >
-    Previous
-  </button>
+  <div class="flex justify-center items-center mt-4">
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+      class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-l hover:bg-blue-600 disabled:opacity-50"
+    >
+      Previous
+    </button>
 
-  <span class="mx-2 font-semibold"
-    >Page {{ currentPage }} of {{ totalPages() }}</span
-  >
+    <span class="mx-2 font-semibold"
+      >Page {{ currentPage }} of {{ totalPages() }}</span
+    >
 
-  <button
-    (click)="changePage(currentPage + 1)"
-    [disabled]="currentPage === totalPages()"
-    class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-r hover:bg-blue-600 disabled:opacity-50 disabled:bg-gray-400"
-  >
-    Next
-  </button>
-</div>
+    <button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages()"
+      class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-r hover:bg-blue-600 disabled:opacity-50 disabled:bg-gray-400"
+    >
+      Next
+    </button>
+  </div>
 </div>

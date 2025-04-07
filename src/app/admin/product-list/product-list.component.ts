@@ -29,7 +29,8 @@ export class ProductListComponent {
   }
 
   constructor(private productService: ProductService) { }
-  fetchProducts() {
+  fetchProducts()
+   {
     console.log('Fetching products...');
     this.productService.getProducts().subscribe((res:any) => {
       this.productList = res;
@@ -39,21 +40,25 @@ export class ProductListComponent {
       console.error('Error fetching products:', error);
     });
   }
-  get paginatedProducts() {
+  get paginatedProducts()
+  {
     const start = (this.currentPage - 1) * this.pageSize;
     return this.filteredProducts.slice(start, start + this.pageSize);
   }
 
-  totalPages() {
+  totalPages() 
+  {
     return Math.ceil(this.filteredProducts.length / this.pageSize);
   }
 
-  changePage(page: number) {
+  changePage(page: number) 
+  {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage = page;
     }
   }
-  delete(id:string){
+  delete(id:string)
+  {
    
     this.productService.deleteProduct(id).subscribe((res:any)=>{
       console.log("Product deleted successfully",res);
@@ -62,7 +67,8 @@ export class ProductListComponent {
       console.error("Product deletion failed",error);
     })
   }
-  search() {
+  search() 
+  {
     this.currentPage = 1; // Reset to the first page on search
     console.log('Current search term:', this.Search.searchTerm);
   

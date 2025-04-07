@@ -65,6 +65,7 @@ interface Product {
   price: number;
   description: string;
   image: string;
+  category: string; // Optional category field
 }
 
 @Component({
@@ -74,9 +75,10 @@ interface Product {
   styleUrls: ['./product-update-form.component.css']
 })
 export class ProductUpdateFormComponent {
-  product: Product = { id: '', name: '', price: 0, description: '', image: '' };
+  product: Product = { id: '', name: '', price: 0, description: '', image: '',category: '' }; // Initialize with empty values
   private selectedFile: File | null = null; // To store the selected file
   router = inject(Router);
+  categories = ['Electronics', 'Clothing', 'Books', 'Home', 'Beauty'];
 
   constructor(
     private route: ActivatedRoute,
@@ -116,7 +118,8 @@ export class ProductUpdateFormComponent {
       name: this.product.name,
       price: this.product.price,
       description: this.product.description,
-      image: this.product.image // Keep the existing image URL
+      image: this.product.image ,
+      category:this.product.category// Keep the existing image URL
     };
   
     // If you want to handle image upload separately, call another method here
