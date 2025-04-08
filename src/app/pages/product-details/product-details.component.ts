@@ -15,6 +15,13 @@ interface product {
   description: string;
   image: string;
   category: string;
+  created_at: {
+    year: number;
+    monthValue: number;
+    dayOfMonth: number;
+  };
+  formattedDate?: string; // Optional property for formatted date
+
 }
 @Component({
   selector: 'app-product-details',
@@ -43,27 +50,60 @@ constructor(private route:ActivatedRoute,
     });
   }
 
-getProductDetail(productId: string | null){
+// getProductDetail(productId: string | null){
+//   if (productId) {
+//     this.productService.getProductById(productId).subscribe((res:any)=>{
+//       this.productDetails = res[0];
+//       this.proCategory = this.productDetails?.category ?? null;
+//         console.log("category", this.proCategory);
+//         if (this.proCategory) {
+//           this.getProductByCategory(this.proCategory);
+//         } else {
+//           console.error("Category is null");
+//         }
+//       console.log(res);
+//     },(error: any)=>{
+//       console.error("Error fetching product details",error);
+//     });
+//   } else {
+//     console.error("Product ID is null");
+//   }
+// }
+getProductDetail(productId: string | null) {
   if (productId) {
-    this.productService.getProductById(productId).subscribe((res:any)=>{
+    this.productService.getProductById(productId).subscribe((res: any) => {
+      // Assuming res is an array and you want the first product
       this.productDetails = res[0];
-      this.proCategory = this.productDetails?.category ?? null;
-        console.log("category", this.proCategory);
-        if (this.proCategory) {
-          this.getProductByCategory(this.proCategory);
-        } else {
-          console.error("Category is null");
+
+      // Ensure created_at is present before parsing
+      if (this.productDetails && this.productDetails.created_at) {
+        if (this.productDetails && this.productDetails.created_at) {
+          this.productDetails.formattedDate = this.parseDate(this.productDetails.created_at);
         }
-      console.log(res);
-    },(error: any)=>{
-      console.error("Error fetching product details",error);
+      } else {
+        console.warn("created_at is undefined for product", this.productDetails);
+        if (this.productDetails) {
+          this.productDetails.formattedDate = 'Date not available'; // Handle undefined case
+        }
+      }
+
+      this.proCategory = this.productDetails?.category ?? null;
+      console.log("Category:", this.proCategory);
+
+      if (this.proCategory) {
+        this.getProductByCategory(this.proCategory);
+      } else {
+        console.error("Category is null");
+      }
+    }, (error: any) => {
+      console.error("Error fetching product details", error);
     });
   } else {
     console.error("Product ID is null");
   }
 }
 getProductByCategory(proCategory: string) {
-  this.productService.getProductByCategory(proCategory).subscribe((data: product[]) => {
+  this.productService.getProductByCategory(proCategory).subscribe((data: any[]) => {
     console.log("Response from API:", data);
     console.log("Current Product ID:", this.productId);
 
@@ -78,7 +118,7 @@ getProductByCategory(proCategory: string) {
        // Compare as strings
    
 
-   
+    console.log("Filtered Product List:", this.productList);
   }, (error: any) => {
     console.error("Error fetching products by category", error);
   });
@@ -90,5 +130,16 @@ toggleShowMore() {
   this.showAll = !this.showAll;
   this.displayedProducts = this.showAll ? this.productList : this.productList.slice(0, 4);
 }
+parseDate(dateObj: any): string {
+  if (dateObj && dateObj.year && dateObj.monthValue && dateObj.dayOfMonth) {
+    // Create a date string in the format YYYY-MM-DD
+    const formattedDate = `${String(dateObj.year).padStart(4, '0')}-${String(dateObj.monthValue).padStart(2, '0')}-${String(dateObj.dayOfMonth).padStart(2, '0')}`;
+    return formattedDate; // Return the formatted date
+  } else {
+    console.error('Invalid date object:', dateObj);
+    return 'Invalid date';
+  }
+}
+
 }
 
