@@ -1,0 +1,25 @@
+<div class="max-w-sm bg-white rounded overflow-hidden shadow-lg justify-evenly items-center ">
+    <div class="w-full mt-2 h-32 overflow-hidden flex justify-evenly items-center"> <!-- Adjust height here -->
+      <img class="w-full h-auto object-contain" [src]="product?.image" alt="{{product?.name}}">
+    </div>
+    <div class="text-center">
+      <span class="text-sm font-semibold text-red-400 mr-2 mb-2">Design</span>
+      <span class="text-sm font-semibold text-yellow-500 mr-2 mb-2">Feature</span>
+      <span class="text-sm font-semibold text-blue-600 mr-2 mb-2">Views</span>
+      <span class="text-sm font-semibold text-gray-700 mr-2 mb-2">Views</span>
+    </div>
+  
+    <div class="text-center">
+      <div class="font-bold text-xl mb-2 mt-2">{{product?.name}}</div>
+      <p class="text-gray-700 text-base">{{product?.price}}</p>
+      <p class="text-gray-700 text-base">{{product?.description}}
+      </p>
+      <!-- <button *ngIf="product" (click)="navigate(product.id)" class="text-yellow-500  rounded hover:transition duration-300 ">view detail</button> -->
+
+      
+    
+    
+  
+      <!-- <p class="text-sm font-semibold text-yellow-500">loadd</p> -->
+    </div>
+  </div>

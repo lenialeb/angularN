@@ -7,7 +7,7 @@ import { ProductService } from '../../../services/product/product.service';
 import { CardComponent } from '../../layout/card/card.component';
 import { SubscriptionFormComponent } from '../../subscription-form/subscription-form.component';
 import { LatectCComponent } from '../../layout/latest-c/latect-c.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { CartService } from '../../../services/product/cart.service';
 
 interface Product {
@@ -21,12 +21,15 @@ interface Product {
 
 @Component({
   selector: 'app-home',
-  imports: [CardComponent, SubscriptionFormComponent, LatectCComponent, NgFor],
+  imports: [CardComponent, SubscriptionFormComponent, LatectCComponent, NgFor,NgIf],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  showAll: boolean = false;
+
   productList: Product[] = [];
+  displayedProductList: Product[] = [];
   lProduct: Product[] = []; // Assuming you'll use this for latest products
   lProList: Product[] = [];
   constructor(private productService: ProductService, private cartService:CartService) {}
@@ -40,6 +43,7 @@ export class HomeComponent implements OnInit {
   fetchProductList() {
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.productList = data;
+      this.displayedProductList = this.productList.slice(0, 8); // Get the first 4 products
       console.log('Fetched Products:', this.productList);
     }, error => {
       console.error('Error fetching product list', error);
@@ -57,5 +61,9 @@ export class HomeComponent implements OnInit {
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
+  }
+  toggleShowMore() {
+    this.showAll = !this.showAll;
+    this.displayedProductList = this.showAll ? this.productList : this.productList.slice(0, 8);
   }
 }

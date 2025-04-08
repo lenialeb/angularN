@@ -56,13 +56,15 @@ export class ProductService {
    
       return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
     }
-     getProductCount(): Observable<number> {
+     getProductCount(): Observable<number> 
+     {
         return this.getProducts().pipe(
           map(products => products.length)
         );
       }
 
-      getProductByCategory(category: string): Observable<product[]> {
+      getProductByCategory(category: string): Observable<product[]> 
+      {
         return this.http.get<product[]>(`${this.proCat}/${category}`);
       }
   }

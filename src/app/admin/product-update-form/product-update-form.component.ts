@@ -58,6 +58,7 @@ import { ProductService } from '../../../services/product/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { StorageService } from '../../../services/storage/storage.service';
+import { NgFor } from '@angular/common';
 
 interface Product {
   id: string;
@@ -70,7 +71,7 @@ interface Product {
 
 @Component({
   selector: 'app-product-update-form',
-  imports: [FormsModule],
+  imports: [FormsModule,NgFor],
   templateUrl: './product-update-form.component.html',
   styleUrls: ['./product-update-form.component.css']
 })

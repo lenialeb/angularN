@@ -28,6 +28,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { OrderComponent } from './admin/order/order.component';
 import { SuccessComponent } from './pages/success/success.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RelatedPostComponent } from './layout/related-post/related-post.component';
 // import { ImageUploadComponent } from './pages/image-upload/image-upload.component';
 
  export const routes: Routes = [
@@ -64,6 +65,8 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
       {path:'checkout',component:CheckoutComponent},
       {path:'order',component:OrderComponent },
       {path:'singlePost',component:SinglePostComponent},
+      {path:'relatedPost',component:RelatedPostComponent},
+
       {path:'commentF',component:CommentFormComponent},
       {path:'commentL',component:CommentListComponent}
     ]
