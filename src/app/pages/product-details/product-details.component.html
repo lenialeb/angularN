@@ -1,22 +1,22 @@
 <div class="w-full flex flex-col justify-evenly items-center mt-6">
-  <div class="w-10/12 flex flex-row bg-white">
+  <div class="w-10/12 flex flex-col md:flex-row bg-white">
     
     <!-- Main Content Section -->
-    <div class="w-9/12 flex flex-col h-full p-1 shadow-lg justify-evenly items-center ">
+    <div class="w-full md:w-9/12 flex flex-col h-full p-1 shadow-lg justify-evenly items-center">
       <div class="w-full justify-evenly h-auto items-center flex">
         <img class="w-full h-96 object-cover" [src]="productDetails?.image" alt="{{ productDetails?.name }}" />
       </div>
-      <div class="flex flex-row ml-48 w-full gap-3 items-start">
+      <div class="flex flex-col md:flex-row md:ml-48 w-full gap-3 items-start mt-2">
         <h1 class="text-sm text-red-400">Design</h1>
         <h1 class="text-sm text-green-600">Feature</h1>
         <h1 class="text-sm text-blue-600">Views -1290</h1>
-        <h1 class="text-sm text-yellow-500">Date:{{productDetails?.formattedDate}}</h1>
+        <h1 class="text-sm text-yellow-500">Date: {{productDetails?.formattedDate}}</h1>
       </div>
       <div class="flex flex-col w-full p-2">
-        <h1>Description for single post</h1>
+        <h1 class="font-bold text-lg">Description for single post</h1>
         <p>{{productDetails?.description}}</p>
         <p>{{productDetails?.category}}</p>
-        <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elitv Lorem ipsum dolor, sit amet consectetur adipisicing elitLorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
+        <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elitLorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur adipisicing elit </p>
       </div>
       <div class="w-full mt-5 flex flex-col gap-2 justify-evenly items-center">
         <app-comment-form></app-comment-form>
@@ -26,19 +26,17 @@
       </div>
     </div>
 
-    <div class="w-3/12 flex flex-col shadow-lg justify-start items-center  p-2">
+    <div class="w-full md:w-3/12 flex flex-col shadow-lg justify-start items-center p-2 mt-4 md:mt-0">
       <h1 class="text-green-800 font-bold text-2xl mb-4">Related Products</h1>
       
-      <div *ngFor="let product of displayedProducts" (click)="goToProductDetails(product.id)" class="m-1 w-full flex flex-col">
+      <div *ngFor="let product of displayedProducts" (click)="goToProductDetails(product.id)" class="m-1 w-full flex md:flex-shrink-0 ">
           <app-related-post [product]="product"></app-related-post>
       </div>
       <button *ngIf="productList.length > 4" (click)="toggleShowMore()" class="mt-4">
         {{ showAll ? 'Show Less' : 'Show More' }}
-    </button>
+      </button>
+    </div>
   </div>
-   
-  </div>
-
 
   <div class="flex w-full mt-10">
     <app-subscription-form></app-subscription-form>
