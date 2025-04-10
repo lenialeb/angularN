@@ -19,9 +19,11 @@ export class ProductListComponent {
   currentPage: number = 1;
   pageSize: number = 6;
   filteredProducts: Product[] = [];
-  Search={
-    searchTerm:  '' // Initialize searchTerm
-  }
+
+    searchTerm: string = ''; // Initialize searchTerm with a default value
+  
+  total: number = 0;
+  totalPages: number = 0;
     ngOnInit() {
     this.fetchProducts();
     // Initialize searchTerm
@@ -32,31 +34,39 @@ export class ProductListComponent {
   fetchProducts()
    {
     console.log('Fetching products...');
-    this.productService.getProducts().subscribe((res:any) => {
-      this.productList = res;
-      this.filteredProducts = res; // Initialize filteredProducts with all products
+    this.productService.getProductsP(this.currentPage,this.pageSize,this.searchTerm).subscribe((res:any) => {
+      this.productList = res.products;
+      this.total = res.total;
+      this.totalPages = Math.ceil(res.total / this.pageSize);
+      this.filteredProducts = res.products; // Initialize filteredProducts with all products
       console.log('Fetched products:', this.productList);
+      console.log('Total products:', this.total);
+      console.log('Total pages:', this.totalPages);
     }, error => {
       console.error('Error fetching products:', error);
     });
   }
-  get paginatedProducts()
-  {
-    const start = (this.currentPage - 1) * this.pageSize;
-    return this.filteredProducts.slice(start, start + this.pageSize);
-  }
+  nextPage() {
+    console.log('Current page:', this.currentPage);
+    if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        console.log(this.currentPage) // Increment the current page
+        this.fetchProducts(); // Fetch products for the new page
+    }
+}
 
-  totalPages() 
-  {
-    return Math.ceil(this.filteredProducts.length / this.pageSize);
-  }
-
-  changePage(page: number) 
-  {
-    if (page >= 1 && page <= this.totalPages()) {
-      this.currentPage = page;
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchProducts();
     }
   }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.fetchProducts();
+  }
+
   delete(id:string)
   {
    
@@ -67,16 +77,10 @@ export class ProductListComponent {
       console.error("Product deletion failed",error);
     })
   }
-  search() 
-  {
-    this.currentPage = 1; // Reset to the first page on search
-    console.log('Current search term:', this.Search.searchTerm);
   
-    this.filteredProducts = this.productList.filter(product => {
-      const match = product.name.toLowerCase().includes(this.Search.searchTerm.toLowerCase());
-      console.log(`Product: ${product.name}, Match: ${match}`);
-      return match;
-    });
-  
+  search(){
+    this.currentPage = 1; // Reset to first page on new search
+    console.log('Current search term:', this.searchTerm);
+    this.fetchProducts(); // Fetch products with the new search term
   }
 }

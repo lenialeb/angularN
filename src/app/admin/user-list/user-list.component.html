@@ -11,7 +11,7 @@
         type="search"
         placeholder="Search by user name"
         aria-label="Search"
-        [(ngModel)]="Search.searchTerm"
+        [(ngModel)]="searchTerm"
         name="searchTerm"
         (input)="search()"
       />
@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of paginatedUser; let i = index" class="hover:bg-gray-100">
+          <tr *ngFor="let user of userList; let i = index" class="hover:bg-gray-100">
             <td class="border border-gray-300 px-4 py-2">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
             <td class="border border-gray-300 px-4 py-2">{{ user.name }}</td>
             <td class="border border-gray-300 px-4 py-2">{{ user.username }}</td>
@@ -48,20 +48,20 @@
     
     <div class="flex justify-center items-center mt-4">
       <button
-        (click)="changePage(currentPage - 1)"
+        (click)="previousPage()"
         [disabled]="currentPage === 1"
         class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-l hover:bg-blue-600 disabled:opacity-50"
       >
         Previous
       </button>
     
-      <span class="mx-2 font-semibold"
-        >Page {{ currentPage }} of {{ totalPages() }}</span
-      >
+      
+      <span class="mx-2 font-semibold">Page {{ currentPage }} of {{ totalPages }}</span>
+
     
       <button
-        (click)="changePage(currentPage + 1)"
-        [disabled]="currentPage === totalPages()"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
         class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-r hover:bg-blue-600 disabled:opacity-50 disabled:bg-gray-400"
       >
         Next

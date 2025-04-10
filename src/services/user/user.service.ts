@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { jwtDecode } from 'jwt-decode';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,9 @@ import { map, Observable, tap } from 'rxjs';
 })
 export class UserService {
   private loginUrl = 'http://localhost:8888/login'; // Your Vert.x API URL
-  private userUrl = 'http://localhost:8888/users'; // Your Vert.x user management API
+  private userUrl = 'http://localhost:8888/users';
+  private userUrlPaginated = 'http://localhost:8888/usersP'; // Your Vert.x user management API
+  // Your Vert.x user management API
 private url='http://localhost:8888/userId/' // Your Vert.x API URL
   constructor(private http: HttpClient) {}
 
@@ -43,6 +45,16 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
   getUsers(): Observable<any> {
     return this.http.get<any>(this.userUrl);
   }
+  getUsersP(currentPage: number, pageSize: number,searchTerm:string): Observable<any> {
+    const params = new HttpParams()
+      .set('page', currentPage.toString())
+      .set('pageSize', pageSize.toString())
+      .set('search', searchTerm);
+
+    return this.http.get<any>(this.userUrlPaginated, { params });
+  }
+  
+ 
 
   // Update user details
   updateUser(id: string, user: { name: string; username: string; password: string }): Observable<any> {

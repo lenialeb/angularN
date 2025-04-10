@@ -27,7 +27,8 @@ interface Product {
 })
 export class HomeComponent implements OnInit {
   showAll: boolean = false;
-
+  currentPage: number = 1;
+  pageSize: number = 10;
   productList: Product[] = [];
   displayedProductList: Product[] = [];
   lProduct: Product[] = []; // Assuming you'll use this for latest products
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit {
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.productList = data;
       this.displayedProductList = this.productList.slice(0, 8); // Get the first 4 products
-      console.log('Fetched Products:', this.productList);
+      console.log('Fetched Products for home:', this.productList);
     }, error => {
       console.error('Error fetching product list', error);
     });

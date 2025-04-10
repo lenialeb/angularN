@@ -18,22 +18,28 @@ export class UserListComponent {
 userList: User []=[]
 currentPage=1;
 pageSize=6;
-Search={
-  searchTerm:''
-}
+total=0;
+totalPages=0;
+
+  searchTerm: string = '';
+
 filteredUser : User[]=[]
 constructor (private userService:UserService){}
 ngOnInit(){
   this.fetchUsers()
 }
-fetchUsers(){
-  this.userService.getUsers().subscribe((res:any)=>{
-    this.userList=res;
-    this.filteredUser=res;
-    console.log('Fetched users:',this.userList);
-  },(error: any)=>{
-    console.error('Error fetching users:',error);    
-  })
+
+fetchUsers() {
+  console.log('Fetching users...');
+  this.userService.getUsersP(this.currentPage, this.pageSize, this.searchTerm).subscribe((res: any) => {
+    console.log("in fetch methode search term",this.searchTerm)
+    this.userList = res.users;
+    this.total = res.total;
+    this.totalPages = Math.ceil(res.total / this.pageSize);
+    console.log('Fetched users:', this.userList);
+  }, (error: any) => {
+    console.error('Error fetching users:', error);
+  });
 }
 delete(id:string){
   this.userService.deleteUser(id).subscribe((res:any)=>{
@@ -47,23 +53,24 @@ get paginatedUser() {
   const start = (this.currentPage - 1) * this.pageSize;
   return this.filteredUser.slice(start, start + this.pageSize);
 }
-
-totalPages() {
-  return Math.ceil(this.filteredUser.length / this.pageSize);
+nextPage() {      
+if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.fetchUsers(); // Fetch products for the new page
+}
 }
 
-changePage(page: number) {
-  if (page >= 1 && page <= this.totalPages()) {
-    this.currentPage = page;
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.fetchUsers();
   }
 }
-search(){
-  this.currentPage = 1; // Reset to the first page on search
-    console.log('Current search term:', this.Search.searchTerm);
-  
-    this.filteredUser = this.userList.filter(user => {
-      const match = user.name.toLowerCase().includes(this.Search.searchTerm.toLowerCase());
-      console.log(`Product: ${user.name}, Match: ${match}`);
-      return match;
-    });
-}}
+
+
+search() {
+  this.currentPage = 1;
+  console.log("search term",this.searchTerm) // Reset to first page on new search
+  this.fetchUsers(); // Fetch users based on the search term
+}
+}
