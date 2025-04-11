@@ -92,9 +92,9 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
     }
     return null;
   }
-  getUserCount(): Observable<number> {
-    return this.getUsers().pipe(
-      map(users => users.length)
-    );
-  }
+  // getUserCount(): Observable<number> {
+  //   return this.getUsers().pipe(
+  //     map(users => users.length)
+  //   );
+  // }
 }

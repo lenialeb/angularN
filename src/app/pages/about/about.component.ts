@@ -19,11 +19,11 @@ export class AboutComponent {
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUserCount().subscribe(count => {
-      this.userCount = count;
+    this.userService.getUsersP(1,6, '').subscribe(count => {
+      this.userCount = count.total;
     });
-    this.productService.getProductCount().subscribe(count => {
-      this.productCount = count;
+    this.productService.getProductsP(1,6,'').subscribe(count => {
+      this.productCount = count.total;
     });
     
   }

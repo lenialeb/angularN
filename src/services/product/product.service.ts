@@ -66,12 +66,12 @@ export class ProductService {
    
       return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
     }
-     getProductCount(): Observable<number> 
-     {
-        return this.getProducts().pipe(
-          map(products => products.length)
-        );
-      }
+    //  getProductCount(): Observable<number> 
+    //  {
+    //     return this.getProducts().pipe(
+    //       map(products => products.length)
+    //     );
+    //   }
 
       getProductByCategory(category: string): Observable<product[]> 
       {

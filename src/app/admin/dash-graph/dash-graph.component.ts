@@ -19,14 +19,19 @@ export class DashGraphComponent {
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUserCount().subscribe(count => {
-      this.userCount = count;
+    this.userService.getUsersP(1,6,'').subscribe(count => {
+      this.userCount = count.total;
     });
-    this.productService.getProductCount().subscribe(count => {
-      this.productCount = count;
-    });
+    
     this.orderService.getOrderCount().subscribe(count => {
       this.orderCount = count;
     });
+    this.productService.getProductsP(1, 6, '').subscribe((res: any) => {
+      this.productCount = res.total;
+    }
+    , error => {  
+      console.error('Error fetching products:', error);
+    }
+    );
   }
 }

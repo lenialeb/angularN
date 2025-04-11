@@ -28,7 +28,7 @@
     
   </li>
 </ul>
-<button (click)="clearCart()" class="mt-4 bg-red-600 text-white rounded px-4 py-2 hover:bg-red-700">Clear Cart</button>
+<button *ngIf="cartItems.length !== 0"  (click)="clearCart()" class="mt-4 bg-red-600 text-white rounded px-4 py-2 hover:bg-red-700">Clear Cart</button>
 
 
 </div>
