@@ -24,7 +24,6 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
 router=inject(Router)
   constructor(private cartService: CartService) {}
-
   ngOnInit() {
     this.cartService.getCartItems().subscribe(items => {
       this.cartItems = items;

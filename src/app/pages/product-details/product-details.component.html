@@ -3,8 +3,16 @@
     
     <!-- Main Content Section -->
     <div class="w-full md:w-9/12 flex flex-col h-full p-1 shadow-lg justify-evenly items-center">
-      <div class="w-full justify-evenly h-auto items-center flex">
+      <div class="w-full relative  justify-evenly h-auto items-center flex">
         <img class="w-full h-96 object-cover" [src]="productDetails?.image" alt="{{ productDetails?.name }}" />
+      </div>
+      <div class="star-rating absolute flex top-96 left-36">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+              (click)="setRating(star)" 
+              class="cursor-pointer text-4xl mr-1"
+              [class.text-yellow-500]="star <= (productDetails?.rating ?? 0)">
+          ★
+        </span>
       </div>
       <div class="flex flex-col md:flex-row md:ml-48 w-full gap-3 items-start mt-2">
         <h1 class="text-sm text-red-400">Design</h1>
@@ -14,6 +22,8 @@
       </div>
       <div class="flex flex-col w-full p-2">
         <h1 class="font-bold text-lg">Description for single post</h1>
+       
+       
         <p>{{productDetails?.description}}</p>
         <p>{{productDetails?.category}}</p>
         <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor, sit amet consectetur

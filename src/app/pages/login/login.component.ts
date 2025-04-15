@@ -24,7 +24,7 @@ export class LoginComponent {
   }
 router= inject(Router);
 http=inject(HttpClient)
-  login() {
+login() {
     console.log("Attempting to log in...");
     if (this.userObj.username === "admin" && this.userObj.password === "1234") {
       console.log("Logged in");
@@ -34,8 +34,6 @@ http=inject(HttpClient)
       alert("Invalid credentials");
     }
   }
-
-
 
 loginApi(){
   if (this.userObj.username === "admin" && this.userObj.password === "1234") {

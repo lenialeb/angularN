@@ -4,15 +4,12 @@
  
     <form>
         <h2 class="heading">Login Here</h2>
-
         <label for="username">Username: </label>
         <input type="text" name="username" required [(ngModel)]="userObj.username">
-
         <label for="password">Password: </label>
         <input type="password" name="Password" required [(ngModel)]="userObj.password">
-
         <button class="login-btn" type="button" (click)="loginApi()">Login</button>
-
-        <span class="register-btn" [routerLink]="['/register']">Don't have an account?</span>       </form>
+        <span class="register-btn" [routerLink]="['/register']">Don't have an account?</span>  
+    </form>
 </div>
 </div>

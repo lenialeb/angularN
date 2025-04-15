@@ -17,6 +17,7 @@ interface Product {
   description: string;
   image: string;
   category: string;
+  rating: number;
 }
 
 @Component({

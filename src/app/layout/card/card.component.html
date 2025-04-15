@@ -1,6 +1,14 @@
 <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg mt-2">
-  <div class="w-full mt-2 h-32 overflow-hidden flex items-center justify-center"> <!-- Adjust height here -->
+  <div class="w-full relative mt-2 h-32 overflow-hidden flex items-center justify-center"> <!-- Adjust height here -->
     <img class="w-full h-auto object-contain" [src]="product?.image" alt="{{product?.name}}">
+  </div>
+  <div class="star-rating flex absolute text-center -mt-6">
+    <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+        
+          class="cursor-pointer text-2xl"
+          [class.text-yellow-500]="product && star <= product.rating">
+      ★
+    </span>
   </div>
   <div class="mt-2 text-center">
     <span class="text-sm font-semibold text-red-400 mr-2 mb-2">Design</span>
@@ -12,13 +20,14 @@
     <div class="font-bold text-xl mb-2 mt-2">{{product?.name}}</div>
     <!-- <div class="font-bold text-xl mb-2 mt-2">{{product?.category}}</div> -->
 
-
+    
     <p class="text-gray-700 text-base">{{product?.price}}</p>
     <p class="text-gray-700 text-base">{{product?.description?.substring(0,20)}}...
       <span>    <button *ngIf="product" (click)="navigate(product.id)" class="text-yellow-500  rounded hover:transition duration-300 ">view detail</button>
       </span>
     </p>
-    <!-- <p class="text-sm font-semibold text-yellow-500">loadd</p> -->
+    
+  
   <button *ngIf="product" (click)="addToCart(product!)" class="mt-2 mb-2 bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600 transition duration-300 ">
     Add to Cart<i class="fas fa-shopping-cart ml-3 "></i>
   </button>

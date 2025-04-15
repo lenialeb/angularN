@@ -17,7 +17,7 @@ export class OrderService {
 
   private orderUrl = 'http://localhost:8888/orders'; 
   private update='http://localhost:8888';// Your Vert.x API URL
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   
  getOrders(): Observable<order[]> {
     return this.http.get<order[]>(this.orderUrl);

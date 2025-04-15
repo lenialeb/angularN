@@ -54,7 +54,6 @@ import { RelatedPostComponent } from './layout/related-post/related-post.compone
     [   
       {path: 'home', component: HomeComponent},
       {path: 'productDetails/:id', component: ProductDetailsComponent},
-
       {path: 'category', component: SingleCategoryComponent},
       {path: 'forms', component: FormsComponent},
       {path: 'post', component:SinglePostComponent },
@@ -66,7 +65,6 @@ import { RelatedPostComponent } from './layout/related-post/related-post.compone
       {path:'order',component:OrderComponent },
       {path:'singlePost',component:SinglePostComponent},
       {path:'relatedPost',component:RelatedPostComponent},
-
       {path:'commentF',component:CommentFormComponent},
       {path:'commentL',component:CommentListComponent}
     ]

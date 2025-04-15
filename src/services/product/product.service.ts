@@ -11,6 +11,7 @@ interface product {
   description: string;
   image: string;
   category: string;
+  rating: number;
 }
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,13 @@ interface product {
 export class ProductService {
   private apiUrl = 'http://localhost:8888/products';
   private apiUrlPaginated = 'http://localhost:8888/productsP';
+  private review = 'http://localhost:8888/review';
 
   private url='http://localhost:8888/productId'
   private proCat='http://localhost:8888/productCategory'
 
    // Your Vert.x API URL
-
   constructor(private http: HttpClient) {}
-
   // Get all products
   getProducts(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
@@ -39,7 +39,9 @@ export class ProductService {
 
     return this.http.get<any>(this.apiUrlPaginated, { params });
   }
-
+  rateProduct(id: string, rating: number): Observable<void> {
+    return this.http.post<void>(this.review, { id, rating },{responseType: 'text' as 'json'});
+}
   // Get product by ID
   getProductById(id: string): Observable<any> {
     return this.http.get<any>(`${this.url}/${id}`);
@@ -47,10 +49,7 @@ export class ProductService {
 
   // Add a new product
   addProduct(product: { name: string; price: number;description:string; image:string;category:string  }): Observable<any> {
-    return this.http.post<any>(this.apiUrl, product,{
-      responseType: 'text' as 'json' // Specify responseType as text
-
-    });
+    return this.http.post<any>(this.apiUrl, product,{responseType: 'text' as 'json'});
   }
 
   // Update an existing product

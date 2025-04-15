@@ -15,12 +15,13 @@ interface product {
   description: string;
   image: string;
   category: string;
+  rating: number;
   created_at: {
     year: number;
     monthValue: number;
     dayOfMonth: number;
   };
-  formattedDate?: string; // Optional property for formatted date
+  formattedDate?: string; 
 
 }
 @Component({
@@ -42,11 +43,12 @@ router=inject(Router);
 constructor(private route:ActivatedRoute,
   private productService:ProductService
 ){}
-  // 
+   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       this.getProductDetail(this.productId);
+     // Log the product ID to the console
     });
   }
 
@@ -114,10 +116,8 @@ getProductByCategory(proCategory: string) {
     this.productList = data.filter(product => { return String(product.id) !== currentProductId });
     console.log("Filtered Product List:", this.productList);
       this.displayedProducts = this.productList.slice(0, 4);
-      console.log("Displayed Products:", this.displayedProducts);
+    console.log("Displayed Products:", this.displayedProducts);
        // Compare as strings
-   
-
     console.log("Filtered Product List:", this.productList);
   }, (error: any) => {
     console.error("Error fetching products by category", error);
@@ -140,6 +140,23 @@ parseDate(dateObj: any): string {
     return 'Invalid date';
   }
 }
-
+setRating(rating: number) {
+  if (this.productDetails) {
+    this.productDetails.rating = rating;
+   this.rateProduct();
+  }
+  
+}
+rateProduct() {
+  if (this.productDetails) {
+  if(this.productId){
+    this.productService.rateProduct(this.productId, this.productDetails.rating).subscribe(() => {
+          alert('Rating submitted!');
+          // Reload product details
+          // Optionally reload product details here
+      });}
+    
+  }
+}
 }
 
