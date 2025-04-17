@@ -30,8 +30,8 @@ export class CommentListComponent {
     if (productId) {
       this.commentService.getComments(productId).subscribe(
         (response) => {
-          console.log('Response:', response); // Log the response
-          this.commentList = response.map((comment: { created_at: any }) => ({
+          console.log('Response:', response.comments); // Log the response
+          this.commentList = response.comments.map((comment: { created_at: any }) => ({
             ...comment,
             formattedDate: this.parseDate(comment.created_at),
             // Parse the date

@@ -14,7 +14,7 @@ export class CommentsService {
   constructor(private http:HttpClient) { }
   private apiUrl = 'http://localhost:8888/comment';
 
-  postComments(productId: string, comment: { userName: string; content: string }): Observable<any> {
+  postComments(productId: string, comment: { id: string; content: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${productId}`, comment);
   }
   getComments(productId: string): Observable<any> {

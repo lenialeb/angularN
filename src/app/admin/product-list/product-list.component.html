@@ -1,20 +1,37 @@
 
-<div class=" fle flex-col  ">
-  <div class="w-1/3 flex mt-3">
-    <form class="d-flex" role="search" (submit)="search(); $event.preventDefault();">
-      <input 
-        class="form-control me-2 border border-gray-300 rounded" 
-        type="search" 
-        placeholder="Search by product name" 
-        aria-label="Search" 
-        [(ngModel)]="searchTerm"
-        name="searchTerm"
-        (input)="search()"
-      />
-      <button class="btn btn-outline-success" type="submit">Search</button>
-
-    </form>
-  </div>
+<div class=" flex flex-col  ">
+  <div class="flex flex-row justify-evenly">
+    
+    <div class="w-1/3 flex mt-3">
+      <form class="d-flex" role="search" (submit)="search(); $event.preventDefault();">
+        <input 
+          class="form-control me-2 border border-gray-300 rounded" 
+          type="search" 
+          placeholder="Search by product name" 
+          aria-label="Search" 
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+          (input)="search()"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+  
+      </form>
+      
+    </div>
+    <div class=" w-1/3 mt-3 flex justify-evenly items-center" >
+    <label for="sortBy" class="block text-gray-700 font-medium mb-1">Sort By:</label>
+    <select id="sortBy" (change)="onSortChange($event)" class="border border-gray-300 rounded-md p-2 mr-4 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <option value="name">Name</option>
+      <option value="price">Price</option>
+    </select>
+  
+    <label for="sortOrder" class="block text-gray-700 font-medium mb-1 ml-4">Order:</label>
+    <select id="sortOrder" (change)="onSortOrderChange($event)" class="border border-gray-300 rounded-md p-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div></div>
+  
 
   <div class="flex mt-3">
     <table class="w-11/12 border-collapse border border-gray-300">
@@ -44,6 +61,19 @@
     </table>
   </div>
   <div class="flex justify-center items-center mt-4">
+   
+      <label for="pageSize" class="block text-gray-700 font-medium mb-1">Page Size:</label>
+      <div class="flex items-center mr-6">
+        <input type="number" id="pageSize" [(ngModel)]="pageSize" min="1" 
+        class="border border-gray-300 rounded-md p-1 w-24 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button (click)="onPageSizeChange(pageSize)" 
+                class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+          Submit
+        </button>
+        </div>
+  
+   
+   
     <button 
       (click)="previousPage()" 
       [disabled]="currentPage === 1" 
@@ -62,6 +92,8 @@
     >
       Next
     </button>
+
+    
   </div>
 
 </div>

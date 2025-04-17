@@ -31,11 +31,14 @@ export class ProductService {
   getProducts(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
-  getProductsP(currentPage: number, pageSize: number,searchTerm:string): Observable<any> {
+  getProductsP(currentPage: number, pageSize: number,searchTerm:string,sortBy:string,sortOrder:string): Observable<any> {
     const params = new HttpParams()
       .set('page', currentPage.toString())
       .set('pageSize', pageSize.toString())
-      .set('search', searchTerm);
+      .set('search', searchTerm)
+      .set('sortBy', sortBy)
+      .set('sortOrder', sortOrder);
+
 
     return this.http.get<any>(this.apiUrlPaginated, { params });
   }

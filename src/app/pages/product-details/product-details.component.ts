@@ -8,6 +8,7 @@ import { SubscriptionFormComponent } from "../../subscription-form/subscription-
 import { LatectCComponent } from "../../layout/latest-c/latect-c.component";
 import { NgFor, NgIf } from '@angular/common';
 import { RelatedPostComponent } from "../../layout/related-post/related-post.component";
+import { CommentsService } from '../../../services/comments/comments.service';
 interface product {
   id: string;
   name: string;
@@ -39,43 +40,39 @@ export class ProductDetailsComponent {
   productId: string | null = null;
   proCategory: string | null = null;
   category:string | null = null;
+  total:number=0;
 router=inject(Router);
 constructor(private route:ActivatedRoute,
-  private productService:ProductService
+  private productService:ProductService,
+  private commentService:CommentsService
 ){}
    
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       this.getProductDetail(this.productId);
-     // Log the product ID to the console
+      this.getCount(this.productId);
+    
     });
   }
 
-// getProductDetail(productId: string | null){
-//   if (productId) {
-//     this.productService.getProductById(productId).subscribe((res:any)=>{
-//       this.productDetails = res[0];
-//       this.proCategory = this.productDetails?.category ?? null;
-//         console.log("category", this.proCategory);
-//         if (this.proCategory) {
-//           this.getProductByCategory(this.proCategory);
-//         } else {
-//           console.error("Category is null");
-//         }
-//       console.log(res);
-//     },(error: any)=>{
-//       console.error("Error fetching product details",error);
-//     });
-//   } else {
-//     console.error("Product ID is null");
-//   }
-// }
+
+getCount(productId: string | null){
+  if(productId){
+    this.commentService.getComments(productId).subscribe((res:any)=>{
+      this.total=res.total_comments;
+      console.log("tot",this.total)
+    })
+  }
+
+}
 getProductDetail(productId: string | null) {
   if (productId) {
     this.productService.getProductById(productId).subscribe((res: any) => {
       // Assuming res is an array and you want the first product
       this.productDetails = res[0];
+     
+
 
       // Ensure created_at is present before parsing
       if (this.productDetails && this.productDetails.created_at) {

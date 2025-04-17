@@ -14,7 +14,8 @@ export class UserAddComponent {
  user ={
     name:'',
     username:'',
-    password:''
+    password:'',
+    role:''
  }
  router=inject(Router)
 constructor(private userService:UserService){}

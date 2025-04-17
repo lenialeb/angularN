@@ -13,7 +13,8 @@ export class RegisterComponent {
 userObj: any = {
   name: '',
   username: '',
-  password: ''
+  password: '',
+  role:' '
 };
 router= inject(Router);
 constructor(private userService:UserService) {}

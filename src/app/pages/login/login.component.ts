@@ -15,13 +15,36 @@ import { UserService } from '../../../services/user/user.service';
 export class LoginComponent {
   userObj: any = {
     username: '',
-    password: ''
+    password: '',
+    role:''
   };
    constructor(private userService: UserService) {}
   apiObj: any={
     "EmailId":'',
-    "password":''
+    "password":'',
+    
   }
+  ngOnInit(){
+    const token = localStorage.getItem('jwtToken');
+    console.log("Token to check out:", token); // Log the token
+  
+    if (!token) {
+        console.error('No JWT token found. Redirecting to login.');
+        this.router.navigate(['/login']); // Redirect to login if no token
+        return;
+    }
+   
+    // Decode the token to get user details
+    let decodedToken: any;
+    if (token) {
+      decodedToken = JSON.parse(atob(token.split('.')[1]));
+    } else {
+      console.error("Token is null or undefined");
+      return;
+    }
+    this.userObj.role = decodedToken.role;
+  }
+ 
 router= inject(Router);
 http=inject(HttpClient)
 login() {
@@ -36,11 +59,7 @@ login() {
   }
 
 loginApi(){
-  if (this.userObj.username === "admin" && this.userObj.password === "1234") {
-    console.log("Logged in");
    
-    this.router.navigateByUrl("admin")
-  } else {
   this.userService.login(this.userObj.username, this.userObj.password).subscribe(
     (res: any) => {
       alert("Logged in successfully")
@@ -49,7 +68,14 @@ loginApi(){
     if(res.token
     ) {
       localStorage.setItem('token', res.token);
-      this.router.navigateByUrl("layout/home"); 
+      
+      const decodedToken = JSON.parse(atob(res.token.split('.')[1]));
+      this.userObj.role = decodedToken.role;
+      console.log("user role",this.userObj.role)
+      if(this.userObj.role ==='admin'){
+        this.router.navigateByUrl("layout/admin");  
+      }
+      else{this.router.navigateByUrl("layout/home"); }
     }
     else {
       console.error("No token received");
@@ -67,7 +93,7 @@ loginApi(){
       console.error("Login failed", error);
     }
   );
-  }}
+  }
   navigate(){
     this.router.navigateByUrl("register");
   }

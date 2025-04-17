@@ -16,15 +16,25 @@ export class CommentFormComponent {
   constructor(
     private route: ActivatedRoute,
     private commentService: CommentsService
-  ) {}
+  ) {
+  }
   ngOnInit(): void {
+    const token = localStorage.getItem('jwtToken');
+
     this.route.params.subscribe((params) => {
       this.productId = params['id'];
-      console.log('Product ID from route:', this.productId); // Log the product ID to the console
+      console.log('Product ID from route:', this.productId);
+       // Log the product ID to the console
     });
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      this.comment.id = decodedToken.id;
+    } else {
+      console.error('Token is null or undefined');
+    }
   }
   comment = {
-    userName: '',
+    id:'',
     content: '',
   };
   submitComment() {

@@ -22,7 +22,7 @@ export class AboutComponent {
     this.userService.getUsersP(1,6, '').subscribe(count => {
       this.userCount = count.total;
     });
-    this.productService.getProductsP(1,6,'').subscribe(count => {
+    this.productService.getProductsP(1,6,'','','').subscribe(count => {
       this.productCount = count.total;
     });
     

@@ -29,24 +29,17 @@ import { OrderComponent } from './admin/order/order.component';
 import { SuccessComponent } from './pages/success/success.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { RelatedPostComponent } from './layout/related-post/related-post.component';
+import { AuthComponent } from './pages/auth/auth.component';
 // import { ImageUploadComponent } from './pages/image-upload/image-upload.component';
 
  export const routes: Routes = [
-  {path:'',component:LoginComponent},
-  {path:'login',component:LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'adminav', component: AdminNavComponent},
-  {path: 'admin', component: AdminDashboardComponent},
-  {path: 'updatePro/:id', component: ProductUpdateFormComponent},
-  {path: 'updateUser/:id', component: UserUpdateFormComponent},
-  {path: 'addUser', component: UserAddComponent},
-  {path: 'addPro', component: ProductAddComponent},
-  {path: 'proList', component: ProductListComponent},
-  {path: 'userList', component: UserListComponent},
-  {path: 'dashB', component: DashGraphComponent},
-  {path: 'invoice', component: InvoiceComponent},
-  {path: 'transaction', component: TransactionListComponent},
-  {path: 'success', component: SuccessComponent},
+  {
+path:'',redirectTo:'/login',pathMatch:'full'
+  },
+  {path:'',component:AuthComponent,children:[{path:'login',component:LoginComponent},
+    {path: 'register', component: RegisterComponent},]},
+  
+ 
   // {path: 'image', component: ImageUploadComponent},
   {
     path:'layout',component:LayoutComponent,
@@ -66,7 +59,19 @@ import { RelatedPostComponent } from './layout/related-post/related-post.compone
       {path:'singlePost',component:SinglePostComponent},
       {path:'relatedPost',component:RelatedPostComponent},
       {path:'commentF',component:CommentFormComponent},
-      {path:'commentL',component:CommentListComponent}
+      {path:'commentL',component:CommentListComponent},
+      {path: 'adminav', component: AdminNavComponent},
+      {path: 'admin', component: AdminDashboardComponent},
+      {path: 'updatePro/:id', component: ProductUpdateFormComponent},
+      {path: 'updateUser/:id', component: UserUpdateFormComponent},
+      {path: 'addUser', component: UserAddComponent},
+      {path: 'addPro', component: ProductAddComponent},
+      {path: 'proList', component: ProductListComponent},
+      {path: 'userList', component: UserListComponent},
+      {path: 'dashB', component: DashGraphComponent},
+      {path: 'invoice', component: InvoiceComponent},
+      {path: 'transaction', component: TransactionListComponent},
+      {path: 'success', component: SuccessComponent},
     ]
   },
  

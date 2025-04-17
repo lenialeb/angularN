@@ -15,6 +15,8 @@ interface Product {
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
+  sortBy: string = 'name'; // Default sort by
+  sortOrder: string = 'asc'; 
   productList: Product[] = []; 
   currentPage: number = 1;
   pageSize: number = 6;
@@ -31,10 +33,14 @@ export class ProductListComponent {
   }
 
   constructor(private productService: ProductService) { }
+  onPageSizeChange(newSize:number){
+    this.pageSize=newSize;
+    this.fetchProducts();
+  }
   fetchProducts()
    {
     console.log('Fetching products...');
-    this.productService.getProductsP(this.currentPage,this.pageSize,this.searchTerm).subscribe((res:any) => {
+    this.productService.getProductsP(this.currentPage,this.pageSize,this.searchTerm,this.sortBy,this.sortOrder).subscribe((res:any) => {
       this.productList = res.products;
       this.total = res.total;
       this.totalPages = Math.ceil(res.total / this.pageSize);
@@ -82,5 +88,18 @@ export class ProductListComponent {
     this.currentPage = 1; // Reset to first page on new search
     console.log('Current search term:', this.searchTerm);
     this.fetchProducts(); // Fetch products with the new search term
+  }
+  onSortChange(event: Event): void {
+    this.currentPage = 1;
+    const target = event.target as HTMLSelectElement; // Cast to HTMLSelectElement
+    this.sortBy = target.value; // Now TypeScript knows target has a value property
+    this.fetchProducts(); // Reload products with the new sort
+}
+  onSortOrderChange(event: Event): void {
+    this.currentPage = 1;
+    const target = event.target as HTMLSelectElement; // Cast to HTMLSelectElement
+    
+    this.sortOrder =  target.value; // Update the sort order
+    this.fetchProducts(); // Reload comments with the new order
   }
 }

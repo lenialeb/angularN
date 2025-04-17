@@ -26,7 +26,7 @@ export class DashGraphComponent {
     this.orderService.getOrderCount().subscribe(count => {
       this.orderCount = count;
     });
-    this.productService.getProductsP(1, 6, '').subscribe((res: any) => {
+    this.productService.getProductsP(1, 6, '','','').subscribe((res: any) => {
       this.productCount = res.total;
     }
     , error => {  
