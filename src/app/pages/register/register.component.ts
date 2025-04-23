@@ -14,7 +14,7 @@ userObj: any = {
   name: '',
   username: '',
   password: '',
-  role:' '
+  role:null
 };
 router= inject(Router);
 constructor(private userService:UserService) {}
@@ -26,5 +26,10 @@ register(){
     console.error("Registration failed",error);
   })
 }
-
+role(event: Event): void {
+  const target = event.target as HTMLSelectElement; 
+  
+  this.userObj.role =  target.value; 
+  
+}
 }

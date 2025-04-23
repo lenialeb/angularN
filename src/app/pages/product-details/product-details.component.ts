@@ -41,8 +41,8 @@ export class ProductDetailsComponent {
   proCategory: string | null = null;
   category:string | null = null;
   total:number=0;
-router=inject(Router);
-constructor(private route:ActivatedRoute,
+  router=inject(Router);
+  constructor(private route:ActivatedRoute,
   private productService:ProductService,
   private commentService:CommentsService
 ){}
@@ -61,7 +61,7 @@ getCount(productId: string | null){
   if(productId){
     this.commentService.getComments(productId).subscribe((res:any)=>{
       this.total=res.total_comments;
-      console.log("tot",this.total)
+      
     })
   }
 
@@ -69,12 +69,12 @@ getCount(productId: string | null){
 getProductDetail(productId: string | null) {
   if (productId) {
     this.productService.getProductById(productId).subscribe((res: any) => {
-      // Assuming res is an array and you want the first product
+      
       this.productDetails = res[0];
      
 
 
-      // Ensure created_at is present before parsing
+  
       if (this.productDetails && this.productDetails.created_at) {
         if (this.productDetails && this.productDetails.created_at) {
           this.productDetails.formattedDate = this.parseDate(this.productDetails.created_at);
@@ -149,8 +149,7 @@ rateProduct() {
   if(this.productId){
     this.productService.rateProduct(this.productId, this.productDetails.rating).subscribe(() => {
           alert('Rating submitted!');
-          // Reload product details
-          // Optionally reload product details here
+        
       });}
     
   }

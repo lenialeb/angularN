@@ -26,11 +26,15 @@ export class CardComponent {
   ngOnInit() {
 this.productService.getProducts().subscribe((data: Product[]) => {
 this.productList = data;
+console.log('Received commentCount:', this.commentCount); // Log the received comment count
+
 })
     // Any initialization logic can go here
   }
+ 
 
   @Input() product:Product | undefined; 
+  @Input() commentCount!: number;
   constructor(private cartService: CartService,private productService:ProductService) {}
 
   addToCart(product: Product) {

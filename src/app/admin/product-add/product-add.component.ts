@@ -56,10 +56,35 @@ export class ProductAddComponent {
     image: '',
     category: '',
   };
+  role: string='';
   categories = ['Electronics', 'Clothing', 'Books', 'Home', 'Beauty'];
   private selectedFile: File | null = null; // To store the selected file
   router = inject(Router);
-
+  ngOnInit(): void {
+    const token = localStorage.getItem('jwtToken');
+      console.log("Token to check out:", token); // Log the token
+    
+      if (!token) {
+          console.error('No JWT token found. Redirecting to login.');
+          this.router.navigate(['/login']); // Redirect to login if no token
+          return;
+      }
+     
+      // Decode the token to get user details
+      let decodedToken: any;
+      if (token) {
+        decodedToken = JSON.parse(atob(token.split('.')[1]));
+      } else {
+        console.error("Token is null or undefined");
+        return;
+      }
+      this.role = decodedToken.role;
+      if (this.role!== 'admin') {
+        alert("Access denied")
+        this.router.navigate(['/layout/home']); // Redirect to access denied page
+      }
+    
+  }
   constructor(private productService: ProductService, private imageService:StorageService) {}
 
   onFileSelected(event: Event) {

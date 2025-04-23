@@ -2,7 +2,7 @@
     <h1>Comments ({{commentList.length}})</h1>
     
     <div *ngFor="let comment of displayedComments" class="w-full bg-white shadow-lg flex flex-col rounded-lg py-2 px-5">
-      <h3 class="text-sm">{{comment.user_name}}</h3>
+      <h3 class="text-sm">{{comment.user_id}}</h3>
       <h4 class="text-sm text-yellow-500">Written {{ comment.formattedDate }}</h4>
       <h5 class="text-sm">{{comment.content}}</h5>
       <div class="flex flex-row gap-4 text-sm">

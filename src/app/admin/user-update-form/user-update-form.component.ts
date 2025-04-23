@@ -7,6 +7,7 @@ interface User{
   name:string;
   username:string;
   password:string;
+  role:string;
 }
 @Component({
   selector: 'app-user-update-form',
@@ -16,7 +17,7 @@ interface User{
 })
 export class UserUpdateFormComponent {
  
-  user: User = { id: '', name: '', username: '',password:'' };
+  user: User = { id: '', name: '', username: '',password:'',role:'' };
 router=inject(Router);
   constructor(
     private route: ActivatedRoute,

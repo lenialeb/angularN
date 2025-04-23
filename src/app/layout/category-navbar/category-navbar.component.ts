@@ -12,6 +12,7 @@ import { CartService } from '../../../services/product/cart.service';
 })
 export class CategoryNavbarComponent {
   username: string | null = null;
+  role:string= '';
   router= inject(Router);
   constructor(private userService: UserService,private cartService: CartService) {
  
@@ -20,6 +21,28 @@ export class CategoryNavbarComponent {
   ngOnInit(): void {
     this.username = this.userService.getUsernameFromToken();
     console.log('Username:', this.username); 
+    const token = localStorage.getItem('jwtToken');
+    console.log("Token to check out:", token); // Log the token
+  
+    if (!token) {
+        console.error('No JWT token found. Redirecting to login.');
+        this.router.navigate(['/login']); // Redirect to login if no token
+        return;
+    }
+   
+    // Decode the token to get user details
+    let decodedToken: any;
+    if (token) {
+      decodedToken = JSON.parse(atob(token.split('.')[1]));
+    } else {
+      console.error("Token is null or undefined");
+      return;
+    }
+    console.log("decodedtoken",decodedToken)
+    this.role = decodedToken.role;
+    console.log("role of the logged",this.role)
+ 
+
   }
   logout(): void {
    

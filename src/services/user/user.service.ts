@@ -35,7 +35,7 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
   }
 
   // Register a new user
-  register(user: { name: string; username: string; password: string;role:string }): Observable<any> {
+  register(user: { name: string; username: string; password: string; role: string }): Observable<any> {
    
     return this.http.post<any>(this.userUrl, user,{responseType: 'text' as 'json'});
   }
@@ -65,7 +65,6 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
 
   // Delete a user
   deleteUser(id: string): Observable<any> {
-  
 
     return this.http.delete(`${this.userUrl}/${id}`,{ responseType: 'text' });
   }

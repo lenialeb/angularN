@@ -6,8 +6,11 @@
         </div>
         <div class="grid md:grid-cols-4 p-4 space-x-2 justify-evenly grid-cols-2 items-center mb-5">
             <div *ngFor="let product of displayedProductList">
-                <app-card [product]="product"></app-card>
+                <app-card [product]="product" [commentCount]="commentCounts[product.id] || 0"></app-card>
+                <!-- <app-card [product]="product" [commentCount]="commentCounts[product.id]" ></app-card> -->
+
             </div>
+            
         </div>
         <div class="flex mb-3">
             <button *ngIf="productList.length > 4" (click)="toggleShowMore()" class=" bg-green-600 px-4 py-2 font-bold rounded-lg   text-white ">

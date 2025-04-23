@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 
 
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 interface product {
   id: string;
   name: string;
@@ -24,12 +25,17 @@ export class ProductService {
 
   private url='http://localhost:8888/productId'
   private proCat='http://localhost:8888/productCategory'
-
+  private productsCache: product[] | null = null;
    // Your Vert.x API URL
   constructor(private http: HttpClient) {}
   // Get all products
   getProducts(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    if (this.productsCache) {
+      return of(this.productsCache); // Return cached data
+    }
+    return this.http.get<any>('http://localhost:8888/products').pipe(
+      tap(data => this.productsCache = data) // Cache the fetched data
+    );
   }
   getProductsP(currentPage: number, pageSize: number,searchTerm:string,sortBy:string,sortOrder:string): Observable<any> {
     const params = new HttpParams()

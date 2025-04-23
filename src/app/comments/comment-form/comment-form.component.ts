@@ -39,6 +39,7 @@ export class CommentFormComponent {
   };
   submitComment() {
     if (this.productId) {
+      console.log(this.productId)
       this.commentService.postComments(this.productId, this.comment).subscribe(
         (res: any) => {
           alert(res.message);

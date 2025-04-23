@@ -37,7 +37,7 @@
             <td class="border border-gray-300 px-4 py-2">{{ user.name }}</td>
             <td class="border border-gray-300 px-4 py-2 flex flex-row gap-2">
               <a>
-                <button class="bg-blue-500 text-white w-20 p-2 rounded hover:bg-blue-600" [routerLink]="[`/updateUser/${user.id}`]">Edit</button>
+                <button class="bg-blue-500 text-white w-20 p-2 rounded hover:bg-blue-600" [routerLink]="[`/layout/updateUser/${user.id}`]">Edit</button>
               </a>
               <button class="bg-red-500 text-white w-20 p-2 rounded hover:bg-red-600" (click)="delete(user.id)">Delete</button>
             </td>

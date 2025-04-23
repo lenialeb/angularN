@@ -22,13 +22,12 @@ export class ProductListComponent {
   pageSize: number = 6;
   filteredProducts: Product[] = [];
 
-    searchTerm: string = ''; // Initialize searchTerm with a default value
-  
+    searchTerm: string = '';
   total: number = 0;
   totalPages: number = 0;
     ngOnInit() {
     this.fetchProducts();
-    // Initialize searchTerm
+   
   
   }
 
@@ -44,7 +43,7 @@ export class ProductListComponent {
       this.productList = res.products;
       this.total = res.total;
       this.totalPages = Math.ceil(res.total / this.pageSize);
-      this.filteredProducts = res.products; // Initialize filteredProducts with all products
+      this.filteredProducts = res.products;
       console.log('Fetched products:', this.productList);
       console.log('Total products:', this.total);
       console.log('Total pages:', this.totalPages);
@@ -56,8 +55,8 @@ export class ProductListComponent {
     console.log('Current page:', this.currentPage);
     if (this.currentPage < this.totalPages) {
         this.currentPage++;
-        console.log(this.currentPage) // Increment the current page
-        this.fetchProducts(); // Fetch products for the new page
+        console.log(this.currentPage)
+        this.fetchProducts(); 
     }
 }
 
@@ -85,21 +84,21 @@ export class ProductListComponent {
   }
   
   search(){
-    this.currentPage = 1; // Reset to first page on new search
+    this.currentPage = 1; 
     console.log('Current search term:', this.searchTerm);
-    this.fetchProducts(); // Fetch products with the new search term
+    this.fetchProducts(); 
   }
   onSortChange(event: Event): void {
     this.currentPage = 1;
-    const target = event.target as HTMLSelectElement; // Cast to HTMLSelectElement
-    this.sortBy = target.value; // Now TypeScript knows target has a value property
-    this.fetchProducts(); // Reload products with the new sort
+    const target = event.target as HTMLSelectElement; 
+    this.sortBy = target.value; 
+    this.fetchProducts();
 }
   onSortOrderChange(event: Event): void {
     this.currentPage = 1;
-    const target = event.target as HTMLSelectElement; // Cast to HTMLSelectElement
+    const target = event.target as HTMLSelectElement; 
     
-    this.sortOrder =  target.value; // Update the sort order
-    this.fetchProducts(); // Reload comments with the new order
+    this.sortOrder =  target.value; 
+    this.fetchProducts();
   }
 }
