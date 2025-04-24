@@ -24,7 +24,7 @@ export class CommentFormComponent {
     this.route.params.subscribe((params) => {
       this.productId = params['id'];
       console.log('Product ID from route:', this.productId);
-       // Log the product ID to the console
+       
     });
     if (token) {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));

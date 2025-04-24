@@ -20,6 +20,7 @@ interface Product {
   image: string;
   category: string;
   rating: number;
+  comment_count: number;
 }
 
 @Component({
@@ -41,8 +42,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchProductList();
-
-   
+    setInterval(() => this.fetchProductList(), 60000);
+    this.fetchLProduct();
   }
 
   fetchProductList() {
@@ -51,7 +52,6 @@ export class HomeComponent implements OnInit {
       console.log("data",data)
       this.productList = data;
       this.displayedProductList = this.productList.slice(0, 8); 
-      this.getCount();// Get the first 4 products
       console.log('Fetched Products for home:', this.productList);
     }, error => {
       console.error('Error fetching product list', error);
@@ -74,19 +74,5 @@ export class HomeComponent implements OnInit {
     this.showAll = !this.showAll;
     this.displayedProductList = this.showAll ? this.productList : this.productList.slice(0, 8);
   }
-  getCount() {
-    const productIds = this.displayedProductList.map(product => product.id);
-  
-    productIds.forEach(productId => {
-      this.commentService.getComments(productId).subscribe({
-        next: (response) => {
-          const count = response.total_comments; // Access total_comments from the response
-          console.log(`Comment count for product ID ${productId}:`, count); // Log the count
-          this.commentCounts[productId] = count; // Store the comment count using the product ID
-        },
-        error: (error) => {
-          console.error(`Error fetching comment count for product ID ${productId}`, error);
-        }
-      });
-    });
-  }}
+ 
+}

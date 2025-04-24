@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { error } from 'console';
 import { UserService } from '../../../services/user/user.service';
+import { NgIf } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
-  imports:[FormsModule,RouterModule],
+  imports:[FormsModule,RouterModule,NgIf],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'] // corrected 'styleUrl' to 'styleUrls'
 })
@@ -18,6 +19,7 @@ export class LoginComponent {
     password: '',
     role:''
   };
+  successMessage: any;
    constructor(private userService: UserService) {}
   apiObj: any={
     "EmailId":'',
@@ -62,24 +64,29 @@ loginApi(){
    
   this.userService.login(this.userObj.username, this.userObj.password).subscribe(
     (res: any) => {
-      alert("Logged in successfully")
+      this.successMessage=res.message
       console.log("Login successful", res);
 
-    if(res.token
-    ) {
-      localStorage.setItem('token', res.token);
-      
-      const decodedToken = JSON.parse(atob(res.token.split('.')[1]));
-      this.userObj.role = decodedToken.role;
-      console.log("user role",this.userObj.role)
-      if(this.userObj.role ==='admin'){
-        this.router.navigateByUrl("layout/admin");  
-      }
-      else{this.router.navigateByUrl("layout/home"); }
-    }
-    else {
-      console.error("No token received");
-    }
+    
+      setTimeout(() => {
+        this.successMessage = null;
+        if(res.token
+        ) {
+          localStorage.setItem('token', res.token);
+          
+          const decodedToken = JSON.parse(atob(res.token.split('.')[1]));
+          this.userObj.role = decodedToken.role;
+          console.log("user role",this.userObj.role)
+          if(this.userObj.role ==='admin'){
+            this.router.navigateByUrl("layout/admin");  
+          }
+          else{this.router.navigateByUrl("layout/home"); }
+        }
+        else {
+          console.error("No token received");
+        }
+      }, 1000);
+   
    
     },
    

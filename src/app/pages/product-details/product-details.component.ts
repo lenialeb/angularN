@@ -23,7 +23,7 @@ interface product {
     dayOfMonth: number;
   };
   formattedDate?: string; 
-
+comment_count:number;
 }
 @Component({
   selector: 'app-product-details',
@@ -51,21 +51,21 @@ export class ProductDetailsComponent {
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       this.getProductDetail(this.productId);
-      this.getCount(this.productId);
+      // this.getCount(this.productId);
     
     });
   }
 
 
-getCount(productId: string | null){
-  if(productId){
-    this.commentService.getComments(productId).subscribe((res:any)=>{
-      this.total=res.total_comments;
+// getCount(productId: string | null){
+//   if(productId){
+//     this.commentService.getComments(productId).subscribe((res:any)=>{
+//       this.total=res.total_comments;
       
-    })
-  }
+//     })
+//   }
 
-}
+// }
 getProductDetail(productId: string | null) {
   if (productId) {
     this.productService.getProductById(productId).subscribe((res: any) => {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 interface product {
@@ -26,16 +26,22 @@ export class ProductService {
   private url='http://localhost:8888/productId'
   private proCat='http://localhost:8888/productCategory'
   private productsCache: product[] | null = null;
-   // Your Vert.x API URL
+  
   constructor(private http: HttpClient) {}
   // Get all products
+  // getProducts(): Observable<any> {
+  //   if (this.productsCache) {
+  //     return of(this.productsCache); // Return cached data
+  //   }
+  //   return this.http.get<any>('http://localhost:8888/products').pipe(
+  //     tap(data => this.productsCache = data) // Cache the fetched data
+  //   );
+  // }
   getProducts(): Observable<any> {
-    if (this.productsCache) {
-      return of(this.productsCache); // Return cached data
-    }
-    return this.http.get<any>('http://localhost:8888/products').pipe(
-      tap(data => this.productsCache = data) // Cache the fetched data
-    );
+    
+    return this.http.get<any>('http://localhost:8888/products')
+      // Cache the fetched data
+    
   }
   getProductsP(currentPage: number, pageSize: number,searchTerm:string,sortBy:string,sortOrder:string): Observable<any> {
     const params = new HttpParams()
@@ -44,9 +50,12 @@ export class ProductService {
       .set('search', searchTerm)
       .set('sortBy', sortBy)
       .set('sortOrder', sortOrder);
+      const token = localStorage.getItem('token')
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}` // Ensure this is set correctly
+      });
 
-
-    return this.http.get<any>(this.apiUrlPaginated, { params });
+    return this.http.get<any>(this.apiUrlPaginated, { headers,params });
   }
   rateProduct(id: string, rating: number): Observable<void> {
     return this.http.post<void>(this.review, { id, rating },{responseType: 'text' as 'json'});

@@ -8,21 +8,18 @@ import { map, Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private loginUrl = 'http://localhost:8888/login'; // Your Vert.x API URL
+  private loginUrl = 'http://localhost:8888/login'; 
   private userUrl = 'http://localhost:8888/users';
-  private userUrlPaginated = 'http://localhost:8888/usersP'; // Your Vert.x user management API
-  // Your Vert.x user management API
-private url='http://localhost:8888/userId/' // Your Vert.x API URL
+  private userUrlPaginated = 'http://localhost:8888/usersP'; 
+private url='http://localhost:8888/userId/' 
   constructor(private http: HttpClient) {}
 
-  // User
-  //  login
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(this.loginUrl, { username, password }).pipe(
       tap(response => {
           if (response.token) {
-              localStorage.setItem('jwtToken', response.token); // Store the token
-              console.log('Token stored in local storage:', response.token); // Log the stored token
+              localStorage.setItem('jwtToken', response.token);
+              console.log('Token stored in local storage:', response.token); 
           }
       })
   );
@@ -37,7 +34,7 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
   // Register a new user
   register(user: { name: string; username: string; password: string; role: string }): Observable<any> {
    
-    return this.http.post<any>(this.userUrl, user,{responseType: 'text' as 'json'});
+    return this.http.post<any>(this.userUrl, user);
   }
   getUserById(id: string): Observable<any> {
     return this.http.get<any>(`${this.url}/${id}`);
@@ -46,16 +43,32 @@ private url='http://localhost:8888/userId/' // Your Vert.x API URL
   getUsers(): Observable<any> {
     return this.http.get<any>(this.userUrl);
   }
-  getUsersP(currentPage: number, pageSize: number,searchTerm:string): Observable<any> {
+  // getUsersP(currentPage: number, pageSize: number,searchTerm:string): Observable<any> {
+  //   const params = new HttpParams()
+  //     .set('page', currentPage.toString())
+  //     .set('pageSize', pageSize.toString())
+  //     .set('search', searchTerm);
+  //     const headers = new HttpHeaders({
+  //       'Authorization': `Bearer ${localStorage.getItem('authToken')}` // Ensure the token is retrieved correctly
+  //     });
+  //   return this.http.get<any>(this.userUrlPaginated, {headers, params });
+  // }
+  
+  getUsersP(currentPage: number, pageSize: number, searchTerm: string): Observable<any> {
     const params = new HttpParams()
       .set('page', currentPage.toString())
       .set('pageSize', pageSize.toString())
       .set('search', searchTerm);
 
-    return this.http.get<any>(this.userUrlPaginated, { params });
+    const token = localStorage.getItem('token'); // Ensure the token is retrieved correctly
+    console.log("Token for request:", token); // Log the token for debugging
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` // Ensure this is set correctly
+    });
+
+    return this.http.get<any>(this.userUrlPaginated, { headers, params });
   }
-  
- 
 
   // Update user details
   updateUser(id: string, user: { name: string; username: string; password: string }): Observable<any> {
