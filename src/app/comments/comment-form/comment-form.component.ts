@@ -28,19 +28,19 @@ export class CommentFormComponent {
     });
     if (token) {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
-      this.comment.id = decodedToken.id;
+      // this.comment.id = decodedToken.id;
     } else {
       console.error('Token is null or undefined');
     }
   }
   comment = {
-    id:'',
+   
     content: '',
   };
   submitComment() {
     if (this.productId) {
       console.log(this.productId)
-      this.commentService.postComments(this.productId, this.comment).subscribe(
+      this.commentService.postComments(this.productId, this.comment.content).subscribe(
         (res: any) => {
           alert(res.message);
           console.log('Comment posted successfully', res);
