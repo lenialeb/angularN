@@ -48,12 +48,28 @@
                   "maximumError": "1MB"
                 },
                 {
+                  "type": "bundle",
+                  "maximumWarning": "600kb",
+                  "maximumError": "1.2mb"
+                },
+                {
+                  "type": "any",
+                  "maximumWarning": "400kb", 
+                  "maximumError": "500kb"     
+                },
+                
+                {
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+        "scripts": true,
+         "styles": true,
+         "fonts": false
+     }
             },
             "development": {
               "optimization": false,
