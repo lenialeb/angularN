@@ -91,6 +91,20 @@
           },
           "defaultConfiguration": "development"
         },
+        "server": {
+  "builder": "@angular-devkit/build-angular:server",
+  "options": {
+    "outputPath": "dist/server",
+    "ssr": {
+      "entry": "src/server.ts"
+    }
+  },
+  "configurations": {
+    "production": {
+      "optimization": true
+    }
+  }
+},
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
         },
